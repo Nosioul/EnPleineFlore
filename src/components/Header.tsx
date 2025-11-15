@@ -28,9 +28,16 @@ const Header: React.FC = () => {
             <Link href="/programme" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
               Le Programme
             </Link>
+
+            {/* 🆕 Débuter */}
+            <Link href="/debuter" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
+              Débuter
+            </Link>
+
             <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
               Pourquoi nous?
             </Link>
+
             <a
               href="https://ufeelgreat.com/c/Mijo"
               target="_blank"
@@ -73,6 +80,12 @@ const Header: React.FC = () => {
               <Link href="/programme" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Le Programme
               </Link>
+
+              {/* 🆕 Débuter (mobile) */}
+              <Link href="/debuter" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
+                Débuter
+              </Link>
+
               <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Pourquoi nous?
               </Link>
