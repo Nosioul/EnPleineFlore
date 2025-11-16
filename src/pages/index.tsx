@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SEO 
-        title=""
+        title="En pleine flore! - UNICITY"
         description="Transformez votre bien-être avec le programme Feel Great. Découvrez Unimate et Balance pour optimiser votre microbiote."
       />
       
