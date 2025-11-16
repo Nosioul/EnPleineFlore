@@ -14,6 +14,7 @@ const PourquoiPage: React.FC = () => {
       <Header />
       
       <main>
+
         {/* Hero Section */}
         <section className="section-padding bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
           <div className="container-custom">
@@ -32,6 +33,29 @@ const PourquoiPage: React.FC = () => {
         {/* Notre Mission */}
         <section className="section-padding">
           <div className="container-custom">
+
+            {/* Bloc boutique complète */}
+            <div className="max-w-3xl mx-auto mb-16 text-center">
+              <h3 className="text-2xl font-semibold text-gray-900">
+                Découvrez notre boutique Feel Great 🛒
+              </h3>
+
+              <p className="mt-3 text-lg text-gray-600">
+                Pour optimiser vos résultats et accéder à l’ensemble des produits Feel Great, découvrez notre boutique complète.
+                Vous y trouverez toutes les solutions pour améliorer votre énergie, votre digestion et votre bien-être au quotidien.
+              </p>
+
+              <a
+                href="https://shop2.unicity.com/c/125413749"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-6 px-6 py-3 rounded-full bg-flore-orange-500 text-white font-semibold shadow-lg hover:bg-flore-orange-600 transition"
+              >
+                Accéder à la boutique complète →
+              </a>
+            </div>
+
+            {/* Grille mission */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -40,6 +64,7 @@ const PourquoiPage: React.FC = () => {
                 <p className="text-lg text-gray-600 mb-6">
                   Chez En pleine flore!, nous croyons que chacun mérite de vivre en pleine santé, avec énergie et vitalité.
                 </p>
+
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <span className="text-flore-orange-500 mr-3 text-xl">✓</span>
@@ -47,12 +72,14 @@ const PourquoiPage: React.FC = () => {
                       <strong>Expertise</strong> - Une connaissance approfondie des produits Feel Great
                     </p>
                   </div>
+
                   <div className="flex items-start">
                     <span className="text-flore-orange-500 mr-3 text-xl">✓</span>
                     <p className="text-gray-700">
                       <strong>Accompagnement</strong> - Un suivi personnalisé tout au long de votre parcours
                     </p>
                   </div>
+
                   <div className="flex items-start">
                     <span className="text-flore-orange-500 mr-3 text-xl">✓</span>
                     <p className="text-gray-700">
@@ -61,19 +88,24 @@ const PourquoiPage: React.FC = () => {
                   </div>
                 </div>
               </div>
+
               <div className="bg-white rounded-2xl p-8 shadow-xl text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-flore-orange-400 to-flore-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl text-white">👥</span>
                 </div>
+
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Plus de 1000 clients satisfaits</h3>
+
                 <p className="text-gray-600 mb-6">
                   Nous avons accompagné des centaines de personnes dans leur transformation.
                 </p>
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <div className="text-3xl font-bold text-flore-orange-500">98%</div>
                     <div className="text-sm text-gray-600">Satisfaction</div>
                   </div>
+
                   <div>
                     <div className="text-3xl font-bold text-flore-orange-500">24h</div>
                     <div className="text-sm text-gray-600">Réponse</div>
@@ -88,14 +120,17 @@ const PourquoiPage: React.FC = () => {
         <section className="section-padding bg-gray-50">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
+
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-6">
                 Le microbiote : la clé de votre bien-être
               </h2>
+
               <p className="text-lg text-gray-600 text-center mb-12">
                 Votre microbiote intestinal joue un rôle crucial dans votre santé globale.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
                 <div className="bg-white rounded-xl p-6 shadow-md">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                     <span className="text-2xl">🌿</span>
@@ -135,24 +170,29 @@ const PourquoiPage: React.FC = () => {
                     Un microbiote sain optimise la production d'énergie.
                   </p>
                 </div>
+
               </div>
             </div>
           </div>
         </section>
 
-        {/* Nos Valeurs */}
+        {/* Nos valeurs */}
         <section className="section-padding">
           <div className="container-custom">
+
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
               Nos valeurs fondamentales
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-br from-flore-orange-400 to-flore-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl text-white">✓</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Qualité Premium</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Qualité Premium
+                </h3>
                 <p className="text-gray-600">
                   Nous ne proposons que les meilleurs produits, scientifiquement validés.
                 </p>
@@ -162,7 +202,9 @@ const PourquoiPage: React.FC = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl text-white">❤️</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Accompagnement</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Accompagnement
+                </h3>
                 <p className="text-gray-600">
                   Nous vous accompagnons avec bienveillance selon vos besoins.
                 </p>
@@ -172,11 +214,14 @@ const PourquoiPage: React.FC = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-flore-orange-400 to-flore-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl text-white">👥</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Transparence</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Transparence
+                </h3>
                 <p className="text-gray-600">
                   Des résultats réels basés sur la science et l'expérience.
                 </p>
               </div>
+
             </div>
           </div>
         </section>
@@ -184,12 +229,15 @@ const PourquoiPage: React.FC = () => {
         {/* CTA Final */}
         <section className="section-padding bg-gradient-to-br from-flore-orange-50 to-flore-orange-100">
           <div className="container-custom text-center">
+
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Rejoignez la communauté En pleine flore!
             </h2>
+
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Des milliers de personnes ont déjà transformé leur vie. C'est votre tour !
             </p>
+
             <a
               href="https://ufeelgreat.com/c/Mijo"
               target="_blank"
@@ -198,8 +246,10 @@ const PourquoiPage: React.FC = () => {
             >
               Commander mes produits Feel Great →
             </a>
+
           </div>
         </section>
+
       </main>
       
       <Footer />
