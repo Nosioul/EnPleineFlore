@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-center text-gray-500 text-sm">
-            © 2024 En pleine flore! - Distributeur indépendant Unicity. Tous droits réservés.
+            © 2025 En pleine flore! - Distributeur indépendant Unicity. Tous droits réservés. Site créer par Nosioul 
           </p>
           <p className="text-center text-gray-400 text-xs mt-2">
             Les produits Feel Great ne sont pas destinés à diagnostiquer, traiter, guérir ou prévenir une maladie.
