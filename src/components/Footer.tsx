@@ -7,6 +7,7 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
           {/* Logo et description */}
           <div className="col-span-1 md:col-span-2">
             <Logo width={160} height={48} />
@@ -42,18 +43,31 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Zone Commander — MODIFIÉE */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Commander</h3>
+
+            {/* Nouveau bouton : Boutique complète */}
+            <a 
+              href="https://shop2.unicity.com/c/125413749"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm mb-3 inline-block"
+            >
+              Boutique complète →
+            </a>
+
+            {/* Ancien bouton renommé */}
             <a 
               href="https://ufeelgreat.com/c/Mijo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn-primary text-sm"
+              className="btn-primary text-sm inline-block"
             >
-              Acheter via partenaire →
+              Commander mes produits Feel Great →
             </a>
           </div>
+
         </div>
 
         {/* Copyright */}
