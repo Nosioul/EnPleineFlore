@@ -14,34 +14,34 @@ const DebuterPage: React.FC = () => {
       
       <Header />
       
-      <main className="bg-gradient-to-b from-green-50 to-white">
+      <main>
         {/* Hero Section */}
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4">
-            <h1 className="text-4xl font-extrabold text-gray-900 text-center">
-              Débuter avec En Pleine Flore
-            </h1>
-            <p className="text-lg text-gray-600 mt-4 text-center">
-              Bienvenue dans votre parcours de transformation ! Cette page vous guidera pas à pas pour bien commencer avec le programme Feel Great et rejoindre notre communauté bienveillante.
-            </p>
-            
-            {/* CTA App Button */}
-            <div className="mt-8 text-center">
+        <section className="section-padding bg-gradient-to-br from-flore-green-50 via-white to-flore-orange-50">
+          <div className="container-custom">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                Débuter avec <span className="text-gradient">Feel Great</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Bienvenue dans votre parcours de transformation ! Cette page vous guidera pas à pas pour bien commencer avec le programme Feel Great et rejoindre notre communauté bienveillante.
+              </p>
+
+              {/* CTA App Button */}
               <a
                 href="https://play.google.com/store/apps/details?id=com.unicity.feelgreatfasting&hl=fr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-flore-orange-500 text-white font-semibold rounded-full hover:bg-flore-orange-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="btn-primary text-lg"
               >
-                → Lien vers l'app Feel Great
+                Télécharger l'app Feel Great →
               </a>
             </div>
           </div>
         </section>
 
         {/* Section Comprendre le programme */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
+        <section className="section-padding bg-white">
+          <div className="container-custom max-w-4xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Comprendre le programme Feel Great
             </h2>
@@ -80,8 +80,8 @@ const DebuterPage: React.FC = () => {
         </section>
 
         {/* Section Étapes pour débuter */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4">
+        <section className="section-padding bg-gradient-to-br from-flore-orange-50 to-white">
+          <div className="container-custom max-w-6xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
               Les 3 étapes pour bien débuter
             </h2>
@@ -130,8 +130,8 @@ const DebuterPage: React.FC = () => {
         </section>
 
         {/* Section vidéo/image supplémentaire */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
+        <section className="section-padding bg-white">
+          <div className="container-custom max-w-4xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Rejoignez notre communauté bienveillante
             </h2>
@@ -155,7 +155,7 @@ const DebuterPage: React.FC = () => {
                   href="https://ufeelgreat.com/c/Mijo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-8 py-3 bg-flore-orange-500 text-white font-semibold rounded-full hover:bg-flore-orange-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                  className="btn-primary text-lg"
                 >
                   Commencer maintenant →
                 </a>
