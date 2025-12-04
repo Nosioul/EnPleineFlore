@@ -1,0 +1,64 @@
+.electricBorder {
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+}
+
+.ebSvg {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.ebLayers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.ebStroke,
+.ebGlow1,
+.ebGlow2,
+.ebBackgroundGlow {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ebStroke {
+  border: var(--eb-border-width, 2px) solid var(--electric-border-color, #5227FF);
+  filter: url(#turbulent-displace);
+  z-index: 110;
+}
+
+.ebGlow1 {
+  border: var(--eb-border-width, 2px) solid var(--electric-border-color, #5227FF);
+  filter: blur(4px);
+  opacity: 0.9;
+  z-index: 109;
+}
+
+.ebGlow2 {
+  border: var(--eb-border-width, 2px) solid var(--electric-border-color, #5227FF);
+  filter: blur(8px);
+  opacity: 0.6;
+  z-index: 108;
+}
+
+.ebBackgroundGlow {
+  background: var(--electric-border-color, #5227FF);
+  filter: blur(16px);
+  opacity: 0.2;
+  z-index: 107;
+}
+
+.ebContent {
+  position: relative;
+  z-index: 20;
+}

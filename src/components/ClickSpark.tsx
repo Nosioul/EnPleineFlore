@@ -172,7 +172,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
           margin: 0,
           padding: 0,
           pointerEvents: 'none',
-          zIndex: 9999
+          zIndex: 200
         }}
       />
       {children}
