@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
-import ElectricBorder from './ElectricBorder';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,21 +38,14 @@ const Header: React.FC = () => {
               Pourquoi nous?
             </Link>
 
-            <ElectricBorder
-              color="#c2410c"
-              speed={0.7}
-              chaos={0.9}
-              thickness={2}
+            <a
+              href="https://ufeelgreat.com/c/Mijo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm"
             >
-              <a
-                href="https://ufeelgreat.com/c/Mijo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm"
-              >
-                Acheter →
-              </a>
-            </ElectricBorder>
+              Acheter →
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -97,22 +89,14 @@ const Header: React.FC = () => {
               <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Pourquoi nous?
               </Link>
-              <ElectricBorder
-                color="#c2410c"
-                speed={0.7}
-                chaos={0.9}
-                thickness={2}
-                className="mt-4"
+              <a
+                href="https://ufeelgreat.com/c/Mijo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-center mt-4"
               >
-                <a
-                  href="https://ufeelgreat.com/c/Mijo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary text-center"
-                >
-                  Acheter →
-                </a>
-              </ElectricBorder>
+                Acheter →
+              </a>
             </div>
           </div>
         )}
