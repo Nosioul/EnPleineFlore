@@ -37,10 +37,8 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     let resizeTimeout: NodeJS.Timeout;
 
     const resizeCanvas = () => {
-      // Utiliser visualViewport pour mobile si disponible, sinon window
-      const width = window.visualViewport?.width || window.innerWidth;
-      const height = window.visualViewport?.height || window.innerHeight;
-
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       if (canvas.width !== width || canvas.height !== height) {
         canvas.width = width;
         canvas.height = height;
@@ -53,12 +51,10 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     };
 
     window.addEventListener('resize', handleResize);
-    window.visualViewport?.addEventListener('resize', handleResize);
     resizeCanvas();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.visualViewport?.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
     };
   }, []);
@@ -134,8 +130,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Utiliser clientX/Y directement car le canvas est en position fixed
-    // Pas besoin d'ajuster pour le scroll car position fixed ignore le scroll
     const x = e.clientX;
     const y = e.clientY;
 
