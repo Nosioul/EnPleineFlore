@@ -33,7 +33,7 @@ const TikTokPage: React.FC = () => {
 
             {/* Titre accrocheur */}
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-              Perdre du poids <span className="text-transparent bg-clip-text bg-gradient-to-r from-flore-orange-500 to-flore-orange-600">sans avoir faim</span> ?
+              Combattre efficacement <span className="text-transparent bg-clip-text bg-gradient-to-r from-flore-orange-500 to-flore-orange-600">l'insulino-résistance</span>
             </h1>
 
             <p className="text-xl text-gray-700 mb-8 font-medium">
