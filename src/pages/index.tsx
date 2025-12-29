@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="https://ufeelgreat.com/c/Mijo"
+                    href="https://shop2.unicity.com/c/125413749"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary text-lg"
@@ -312,7 +312,7 @@ const HomePage: React.FC = () => {
 
             <div className="text-center mt-12">
               <a
-                href="https://ufeelgreat.com/c/Mijo"
+                href="https://shop2.unicity.com/c/125413749"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-lg"
@@ -451,7 +451,7 @@ const HomePage: React.FC = () => {
 
             <div className="text-center mt-12">
               <a
-                href="https://ufeelgreat.com/c/Mijo"
+                href="https://shop2.unicity.com/c/125413749"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -472,7 +472,7 @@ const HomePage: React.FC = () => {
               Rejoignez des milliers de personnes qui ont déjà adopté le programme Feel Great.
             </p>
             <a
-              href="https://ufeelgreat.com/c/Mijo"
+              href="https://shop2.unicity.com/c/125413749"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-lg"

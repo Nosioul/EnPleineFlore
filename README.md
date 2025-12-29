@@ -5,7 +5,7 @@
 - ✅ **Page Balance créée et fonctionnelle**
 - ✅ **Tous les imports corrigés** (../components au lieu de @/components)
 - ✅ **Vos 8 images intégrées**
-- ✅ **Tous les boutons → https://ufeelgreat.com/c/Mijo**
+- ✅ **Tous les boutons → https://shop2.unicity.com/c/125413749**
 
 ---
 
@@ -94,7 +94,7 @@ import Header from '@/components/Header';  // ERREUR
 ### Changer le lien affilié :
 1. Ouvrez VS Code (ou n'importe quel éditeur)
 2. Faites Ctrl+Shift+F (recherche globale)
-3. Recherchez : `https://ufeelgreat.com/c/Mijo`
+3. Recherchez : `https://shop2.unicity.com/c/125413749`
 4. Remplacez par votre lien
 5. Sauvegardez tous les fichiers
 
@@ -182,7 +182,7 @@ Si tout est coché = **ÇA MARCHE !** 🎉
 - ✅ Pourquoi nous
 
 **Tous les boutons "Acheter" vont vers :**
-→ https://ufeelgreat.com/c/Mijo
+→ https://shop2.unicity.com/c/125413749
 
 ---
 

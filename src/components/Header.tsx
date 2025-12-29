@@ -39,7 +39,7 @@ const Header: React.FC = () => {
             </Link>
 
             <a
-              href="https://ufeelgreat.com/c/Mijo"
+              href="https://shop2.unicity.com/c/125413749"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-sm"
@@ -90,7 +90,7 @@ const Header: React.FC = () => {
                 Pourquoi nous?
               </Link>
               <a
-                href="https://ufeelgreat.com/c/Mijo"
+                href="https://shop2.unicity.com/c/125413749"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-center mt-4"

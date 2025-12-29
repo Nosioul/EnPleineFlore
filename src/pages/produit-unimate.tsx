@@ -34,7 +34,7 @@ const UnimateProductPage: React.FC = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <a
-                    href="https://ufeelgreat.com/c/Mijo"
+                    href="https://shop2.unicity.com/c/125413749"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary text-lg"
@@ -211,7 +211,7 @@ const UnimateProductPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://ufeelgreat.com/c/Mijo"
+                href="https://shop2.unicity.com/c/125413749"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-lg"
