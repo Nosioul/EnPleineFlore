@@ -60,17 +60,17 @@ const DebuterPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Espace pour vidéo YouTube */}
+            {/* Vidéo de présentation */}
             <div className="mt-8 bg-gray-100 rounded-lg p-8">
               <div className="aspect-w-16 aspect-h-9">
-                <iframe
-                  className="w-full h-[400px] rounded-lg"
-                  src="https://www.youtube.com/watch?v=x4hAYXFLWeg"
-                  title="Présentation du programme Feel Great"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <video
+                  className="w-full h-auto rounded-lg"
+                  controls
+                  preload="metadata"
+                >
+                  <source src="/videos/presentation-feel-great.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
               </div>
               <p className="text-center text-gray-600 mt-4 text-sm">
                 Vidéo de présentation du programme Feel Great
