@@ -10,13 +10,13 @@ const TikTokPage: React.FC = () => {
         description="Découvrez le programme Feel Great : jeûne intermittent facilité avec Unimate et Balance. Rejoignez des milliers de personnes qui ont transformé leur vie."
       />
 
-      <main className="min-h-screen bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
+      <main className="min-h-screen bg-white">
         {/* Hero Section - Ultra compact et percutant */}
-        <section className="py-12 px-4">
+        <section className="py-12 px-4 bg-gradient-to-br from-flore-green-50 via-white to-flore-orange-50">
           <div className="max-w-2xl mx-auto text-center">
             {/* Logo rapide */}
             <div className="mb-6">
-              <svg width="120" height="40" viewBox="0 0 200 60" className="mx-auto" xmlns="http://www.w3.org/2000/svg">
+              <svg width="180" height="60" viewBox="0 0 200 60" className="mx-auto" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(10, 30)">
                   <circle cx="0" cy="-8" r="6" fill="#f97316" opacity="0.9"></circle>
                   <circle cx="8" cy="-4" r="6" fill="#fb923c" opacity="0.9"></circle>
@@ -45,10 +45,14 @@ const TikTokPage: React.FC = () => {
               href="https://shop2.unicity.com/c/125413749"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block w-full max-w-md px-8 py-5 mb-4 text-xl font-bold text-white rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl bg-gradient-to-r from-flore-orange-500 to-flore-orange-600 hover:from-flore-orange-600 hover:to-flore-orange-700"
+              className="inline-block w-full max-w-md px-8 py-5 mb-2 text-xl font-bold text-white rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl bg-gradient-to-r from-flore-orange-500 to-flore-orange-600 hover:from-flore-orange-600 hover:to-flore-orange-700"
             >
               🛒 COMMANDER MAINTENANT
             </a>
+
+            <p className="text-sm text-gray-600 mb-4 max-w-md mx-auto">
+              le pack feel great avec 1 unimate et 2 balance
+            </p>
 
             {/* CTA secondaire */}
             <Link
@@ -60,37 +64,26 @@ const TikTokPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Section "Comment ça marche" - Ultra rapide */}
+        {/* Section "Comment ça marche" - Vidéo de présentation */}
         <section className="py-12 px-4 bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
               Comment ça marche ? 🤔
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Unimate */}
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-3">☕</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Unimate</h3>
-                <p className="text-gray-700 mb-4">
-                  Le matin à jeun : Énergie durable + Concentration + Facilite le jeûne
-                </p>
-                <div className="inline-block px-3 py-1 bg-green-600 text-white text-sm font-semibold rounded-full">
-                  Yerba Maté concentré
-                </div>
-              </div>
-
-              {/* Balance */}
-              <div className="bg-gradient-to-br from-flore-orange-50 to-flore-orange-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-3">🍽️</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Balance</h3>
-                <p className="text-gray-700 mb-4">
-                  Avant les repas : Régule la glycémie + Satiété prolongée + Digestion optimale
-                </p>
-                <div className="inline-block px-3 py-1 bg-flore-orange-600 text-white text-sm font-semibold rounded-full">
-                  Matrice de fibres
-                </div>
-              </div>
+            {/* Vidéo de présentation */}
+            <div className="bg-gray-100 rounded-2xl p-6 shadow-xl">
+              <video
+                className="w-full h-auto rounded-xl"
+                controls
+                preload="metadata"
+              >
+                <source src="/videos/explicationTiktok.mp4" type="video/mp4" />
+                Votre navigateur ne supporte pas la lecture de vidéos.
+              </video>
+              <p className="text-center text-gray-600 mt-4 text-sm">
+                Découvrez le programme Feel Great en vidéo
+              </p>
             </div>
           </div>
         </section>
