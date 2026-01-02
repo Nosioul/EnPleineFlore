@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
             {/* Réseaux sociaux */}
             <div className="flex space-x-4 mt-6">
               {/* TikTok */}
-              <a 
-                href="https://www.tiktok.com/@en_pleine_flore"
+              <a
+                href="https://en-pleine-flore.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-flore-orange-500 transition-colors"
