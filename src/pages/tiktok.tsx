@@ -16,7 +16,7 @@ const TikTokPage: React.FC = () => {
           <div className="max-w-2xl mx-auto text-center">
             {/* Logo rapide */}
             <div className="mb-6">
-              <a href="https://www.tiktok.com/@mijosteo" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <a href="https://en-pleine-flore.vercel.app/" className="inline-block">
                 <svg width="180" height="60" viewBox="0 0 200 60" className="mx-auto transition-transform duration-300 hover:scale-105" xmlns="http://www.w3.org/2000/svg">
                   <g transform="translate(10, 30)">
                     <circle cx="0" cy="-8" r="6" fill="#f97316" opacity="0.9"></circle>
