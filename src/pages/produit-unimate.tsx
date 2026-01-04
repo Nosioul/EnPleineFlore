@@ -7,9 +7,12 @@ import SEO from '../components/SEO';
 const UnimateProductPage: React.FC = () => {
   return (
     <>
-      <SEO 
-        title="Unimate - Énergie et Concentration | En pleine flore!"
-        description="Découvrez Unimate, la boisson à base de yerba maté qui améliore votre concentration et votre énergie."
+      <SEO
+        title="Unimate - Énergie et Concentration"
+        description="Découvrez Unimate par En pleine flore, la boisson à base de yerba maté ultra-purifiée qui améliore votre concentration et votre énergie. Feel Great by Unicity."
+        keywords="unimate, en pleine flore, yerba maté, énergie, concentration, feel great, unicity, boisson matinale, jeûne intermittent"
+        url="https://en-pleine-flore.vercel.app/produit-unimate"
+        image="/images/Feel-great.jpg"
       />
       
       <Header />

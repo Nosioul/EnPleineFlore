@@ -1,0 +1,17 @@
+# Robots.txt pour En pleine flore!
+# Permettre à tous les moteurs de recherche d'indexer le site
+
+User-agent: *
+Allow: /
+
+# Désactiver l'indexation des fichiers inutiles
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Fichiers spécifiques
+Allow: /images/
+Allow: /videos/
+
+# Sitemap
+Sitemap: https://en-pleine-flore.vercel.app/sitemap.xml
