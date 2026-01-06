@@ -40,7 +40,7 @@ const ProgrammePage: React.FC = () => {
                 </div>
               </div>
               <a
-                href="https://shop2.unicity.com/c/125413749"
+                href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-lg"
@@ -267,7 +267,7 @@ const ProgrammePage: React.FC = () => {
               Le programme Feel Great vous accompagne vers une meilleure version de vous-même.
             </p>
             <a
-              href="https://shop2.unicity.com/c/125413749"
+              href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-lg"

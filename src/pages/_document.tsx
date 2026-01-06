@@ -37,7 +37,7 @@ export default function Document() {
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://shop2.unicity.com/c/125413749",
+      "url": "https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648",
       "priceCurrency": "EUR",
       "availability": "https://schema.org/InStock"
     }

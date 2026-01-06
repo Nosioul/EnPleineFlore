@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
             
             {/* Bouton Feel Great (renommé et taille ajustée) */}
             <a
-              href="https://shop2.unicity.com/c/125413749"
+              href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-flore-orange-500 text-white text-sm font-semibold rounded-full hover:bg-flore-orange-600 transition-colors"

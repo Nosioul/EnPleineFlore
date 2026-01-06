@@ -46,7 +46,7 @@ const PourquoiPage: React.FC = () => {
               </p>
 
               <a
-                href="https://shop2.unicity.com/c/125413749"
+                href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-6 px-6 py-3 rounded-full bg-flore-orange-500 text-white font-semibold shadow-lg hover:bg-flore-orange-600 transition"
@@ -239,7 +239,7 @@ const PourquoiPage: React.FC = () => {
             </p>
 
             <a
-              href="https://shop2.unicity.com/c/125413749"
+              href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-lg"

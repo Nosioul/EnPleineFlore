@@ -44,7 +44,7 @@ const TikTokPage: React.FC = () => {
 
             {/* CTA principal - ÉNORME */}
             <a
-              href="https://shop2.unicity.com/c/125413749"
+              href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full max-w-md px-8 py-5 mb-2 text-xl font-bold text-white rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl bg-gradient-to-r from-flore-orange-500 to-flore-orange-600 hover:from-flore-orange-600 hover:to-flore-orange-700"
@@ -179,7 +179,7 @@ const TikTokPage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://shop2.unicity.com/c/125413749"
+                href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-10 py-5 text-xl font-bold text-flore-orange-600 bg-white rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-110 hover:shadow-3xl"

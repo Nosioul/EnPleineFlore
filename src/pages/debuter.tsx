@@ -152,7 +152,7 @@ const DebuterPage: React.FC = () => {
               
               <div className="text-center">
                 <a
-                  href="https://shop2.unicity.com/c/125413749"
+                  href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary text-lg"
