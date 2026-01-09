@@ -14,4 +14,4 @@ Allow: /images/
 Allow: /videos/
 
 # Sitemap
-Sitemap: https://en-pleine-flore.vercel.app/sitemap.xml
+Sitemap: https://en-pleine-flore.com/sitemap.xml

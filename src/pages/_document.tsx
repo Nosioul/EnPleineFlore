@@ -5,8 +5,8 @@ export default function Document() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "En pleine flore!",
-    "url": "https://en-pleine-flore.vercel.app",
-    "logo": "https://en-pleine-flore.vercel.app/favicon.png",
+    "url": "https://en-pleine-flore.com",
+    "logo": "https://en-pleine-flore.com/favicon.png",
     "description": "Prenez soin de vous et de votre microbiote avec les produits Feel Great by Unicity. Découvrez Unimate et Balance.",
     "sameAs": [
       "https://www.tiktok.com/@enpleineflore"
@@ -17,11 +17,11 @@ export default function Document() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "En pleine flore!",
-    "url": "https://en-pleine-flore.vercel.app",
+    "url": "https://en-pleine-flore.com",
     "description": "Site officiel En pleine flore - Produits Feel Great by Unicity",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://en-pleine-flore.vercel.app/?s={search_term_string}",
+      "target": "https://en-pleine-flore.com/?s={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
