@@ -19,20 +19,20 @@ const UnimateProductPage: React.FC = () => {
       
       <main>
         {/* Hero Section Produit */}
-        <section className="section-padding bg-gradient-to-br from-green-50 to-white">
+        <section className="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-green-50 to-white">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 mb-4">
+                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 mb-3 md:mb-4">
                   Produit phare
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
                   Unimate
                 </h1>
-                <p className="text-2xl text-gray-700 mb-4 font-medium">
+                <p className="text-xl sm:text-2xl text-gray-700 mb-3 md:mb-4 font-medium">
                   Votre allié énergie et concentration
                 </p>
-                <p className="text-lg text-gray-600 mb-8">
+                <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
                   Une boisson matinale révolutionnaire à base de yerba maté ultra-purifiée, conçue pour optimiser vos performances mentales et physiques.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -48,27 +48,28 @@ const UnimateProductPage: React.FC = () => {
                     Voir aussi Balance
                   </Link>
                 </div>
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl font-bold text-green-600">5x</div>
-                    <div className="text-sm text-gray-600">Plus de chlorogène</div>
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                  <div className="bg-white rounded-lg p-3 md:p-4 shadow-md">
+                    <div className="text-xl sm:text-2xl font-bold text-green-600">5x</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Plus de chlorogène</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl font-bold text-green-600">30x</div>
-                    <div className="text-sm text-gray-600">Plus de théobromine</div>
+                  <div className="bg-white rounded-lg p-3 md:p-4 shadow-md">
+                    <div className="text-xl sm:text-2xl font-bold text-green-600">30x</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Plus de théobromine</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 shadow-md">
-                    <div className="text-2xl font-bold text-green-600">0</div>
-                    <div className="text-sm text-gray-600">Sucre ajouté</div>
+                  <div className="bg-white rounded-lg p-3 md:p-4 shadow-md">
+                    <div className="text-xl sm:text-2xl font-bold text-green-600">0</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Sucre ajouté</div>
                   </div>
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-gradient-to-br from-green-100 to-green-200 rounded-3xl p-12 shadow-2xl">
-                  <img 
-                    src="/images/Feel-great.jpg" 
+                <div className="bg-gradient-to-br from-green-100 to-green-200 rounded-2xl md:rounded-3xl p-6 md:p-12 shadow-2xl">
+                  <img
+                    src="/images/Feel-great.jpg"
                     alt="Unimate Feel Great"
                     className="w-full h-auto"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -77,9 +78,9 @@ const UnimateProductPage: React.FC = () => {
         </section>
 
         {/* Bienfaits */}
-        <section className="section-padding">
+        <section className="py-12 md:py-16 lg:py-24">
           <div className="container-custom">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 md:mb-12">
               Les bienfaits d'Unimate
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -147,10 +148,10 @@ const UnimateProductPage: React.FC = () => {
         </section>
 
         {/* Mode d'emploi */}
-        <section className="section-padding bg-gray-50">
+        <section className="py-12 md:py-16 lg:py-24 bg-gray-50">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 md:mb-12">
                 Comment utiliser Unimate ?
               </h2>
               
@@ -204,12 +205,12 @@ const UnimateProductPage: React.FC = () => {
         </section>
 
         {/* CTA Final */}
-        <section className="section-padding bg-gradient-to-br from-green-50 to-green-100">
+        <section className="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-green-50 to-green-100">
           <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
               Prêt à booster votre énergie naturellement ?
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
               Rejoignez des milliers de personnes qui ont fait d'Unimate leur rituel matinal.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

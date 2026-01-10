@@ -5,13 +5,13 @@ import Logo from './Logo';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          
+      <div className="container-custom py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+
           {/* Logo et description */}
           <div className="col-span-1 md:col-span-2">
             <Logo width={160} height={48} />
-            <p className="mt-4 text-gray-600">
+            <p className="mt-3 md:mt-4 text-sm md:text-base text-gray-600">
               Prenez soin de vous, prenez soin de votre microbiote. Découvrez les produits Feel Great by Unicity.
             </p>
             
@@ -47,8 +47,8 @@ const Footer: React.FC = () => {
 
           {/* Liens rapides */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">Navigation</h3>
+            <ul className="space-y-1.5 md:space-y-2 text-sm md:text-base">
               <li>
                 <Link href="/" className="text-gray-600 hover:text-flore-orange-500 transition-colors">
                   Accueil
@@ -84,26 +84,26 @@ const Footer: React.FC = () => {
 
           {/* Zone Commander */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Commander</h3>
+            <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">Commander</h3>
 
             {/* Bouton Boutique complète */}
-            <a 
+            <a
               href="https://shop2.unicity.com/c/125413749"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-flore-orange-500 text-white text-sm font-semibold rounded-full hover:bg-flore-orange-600 transition-colors mb-3"
+              className="inline-block px-3 md:px-4 py-2 bg-flore-orange-500 text-white text-xs md:text-sm font-semibold rounded-full hover:bg-flore-orange-600 transition-colors mb-2 md:mb-3"
             >
               Boutique complète →
             </a>
-            
+
             <br />
-            
+
             {/* Bouton Feel Great (renommé et taille ajustée) */}
             <a
               href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-flore-orange-500 text-white text-sm font-semibold rounded-full hover:bg-flore-orange-600 transition-colors"
+              className="inline-block px-3 md:px-4 py-2 bg-flore-orange-500 text-white text-xs md:text-sm font-semibold rounded-full hover:bg-flore-orange-600 transition-colors"
             >
               Produits Feel Great →
             </a>
@@ -112,11 +112,11 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-gray-200">
-          <p className="text-center text-gray-500 text-sm">
+        <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-200">
+          <p className="text-center text-gray-500 text-xs md:text-sm px-4">
             © 2025 En pleine flore! - Distributeur indépendant Unicity. Tous droits réservés. Site créé par Nosioul
           </p>
-          <p className="text-center text-gray-400 text-xs mt-2">
+          <p className="text-center text-gray-400 text-xs mt-2 px-4">
             Les produits Feel Great ne sont pas destinés à diagnostiquer, traiter, guérir ou prévenir une maladie.
           </p>
         </div>

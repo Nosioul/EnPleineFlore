@@ -55,6 +55,10 @@ export default function Document() {
     <Html lang="fr">
       <Head>
         <meta name="google-site-verification" content="QPVReAiAyLEOpVGq4_Z8HhsiEIqn6KW43PbMLuOjHu8" />
+
+        {/* Optimisation mobile */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+
         {/* Favicon */}
         <link rel="icon" href="/favicon.png" />
 

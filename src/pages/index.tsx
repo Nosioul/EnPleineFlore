@@ -16,16 +16,16 @@ const HomePage: React.FC = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[600px] flex items-center bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
-          <div className="container-custom py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
+          <div className="container-custom py-12 md:py-16 lg:py-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
                   Prenez soin de vous,{' '}
                   <span className="text-gradient">prenez soin de votre microbiote</span>
                 </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  Découvrez le programme Feel Great et transformez votre quotidien grâce à Unimate et Balance. 
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
+                  Découvrez le programme Feel Great et transformez votre quotidien grâce à Unimate et Balance.
                   Une approche scientifique pour optimiser votre bien-être.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -43,18 +43,19 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-3xl shadow-2xl p-8">
-                  <img 
-                    src="/images/start.png" 
+                <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-4 md:p-8">
+                  <img
+                    src="/images/start.png"
                     alt="Programme Feel Great"
-                    className="w-full h-auto rounded-2xl"
+                    className="w-full h-auto rounded-xl md:rounded-2xl"
+                    loading="lazy"
                   />
                 </div>
               </div>
             </div>
           </div>
         </section>
-<section className="relative py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-orange-50 overflow-hidden">
+<section className="relative py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gradient-to-br from-slate-50 via-white to-orange-50 overflow-hidden">
   {/* Animations de fond subtiles */}
   <div className="absolute inset-0 opacity-5">
     <div className="absolute top-20 left-10 w-72 h-72 bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
@@ -63,28 +64,28 @@ const HomePage: React.FC = () => {
 
   <div className="max-w-7xl mx-auto relative z-10">
     {/* En-tête de la section */}
-    <div className="text-center mb-16 animate-fade-in">
-      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
-        L'insulinorésistance : <br />
+    <div className="text-center mb-10 md:mb-16 animate-fade-in">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 md:mb-6 leading-tight">
+        L'insulinorésistance : <br className="hidden sm:block" />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
           le problème caché
         </span>
       </h2>
-      <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Comprendre ce phénomène métabolique silencieux qui affecte des millions de personnes, 
+      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+        Comprendre ce phénomène métabolique silencieux qui affecte des millions de personnes,
         et découvrir comment y remédier naturellement.
       </p>
     </div>
 
     {/* Grid des 3 cartes principales */}
-    <div className="grid md:grid-cols-3 gap-8 mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
       {/* Carte 1 : Qu'est-ce que l'insulinorésistance ? */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-orange-200 hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-center">
-          <div className="text-6xl mb-3 transform group-hover:scale-110 transition-transform duration-300">❗</div>
-          <h3 className="text-2xl font-bold text-white">Qu'est-ce que c'est ?</h3>
+      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-orange-200 md:hover:-translate-y-2">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-4 md:p-6 text-center">
+          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">❗</div>
+          <h3 className="text-xl md:text-2xl font-bold text-white">Qu'est-ce que c'est ?</h3>
         </div>
-        <div className="p-8">
+        <div className="p-6 md:p-8">
           <p className="text-gray-700 leading-relaxed mb-4">
             <span className="font-semibold text-gray-900">L'insulinorésistance</span> se produit lorsque vos cellules (muscles, foie, tissu adipeux) deviennent moins sensibles à l'action de l'insuline.
           </p>
@@ -98,12 +99,12 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Carte 2 : Les conséquences */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-red-200 hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-red-500 to-red-600 p-6 text-center">
-          <div className="text-6xl mb-3 transform group-hover:scale-110 transition-transform duration-300">⚠️</div>
-          <h3 className="text-2xl font-bold text-white">Les conséquences</h3>
+      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-red-200 md:hover:-translate-y-2">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 p-4 md:p-6 text-center">
+          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">⚠️</div>
+          <h3 className="text-xl md:text-2xl font-bold text-white">Les conséquences</h3>
         </div>
-        <div className="p-8">
+        <div className="p-6 md:p-8">
           <p className="text-gray-700 leading-relaxed mb-5">
             Si elle n'est pas prise en charge, l'insulinorésistance entraîne des complications sérieuses :
           </p>
@@ -133,12 +134,12 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Carte 3 : Comment Feel Great aide */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 text-center">
-          <div className="text-6xl mb-3 transform group-hover:scale-110 transition-transform duration-300">✅</div>
-          <h3 className="text-2xl font-bold text-white">La solution Feel Great</h3>
+      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 md:hover:-translate-y-2">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 md:p-6 text-center">
+          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">✅</div>
+          <h3 className="text-xl md:text-2xl font-bold text-white">La solution Feel Great</h3>
         </div>
-        <div className="p-8">
+        <div className="p-6 md:p-8">
           <p className="text-gray-700 leading-relaxed mb-5">
             Le programme Feel Great combine deux produits scientifiquement validés pour agir en synergie :
           </p>
@@ -237,13 +238,13 @@ const HomePage: React.FC = () => {
   `}</style>
 </section>
         {/* Produits Section */}
-        <section className="section-padding">
+        <section className="py-12 md:py-16 lg:py-24">
           <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
                 Les produits <span className="text-gradient">Feel Great</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
                 Deux produits complémentaires pour un programme complet de bien-être
               </p>
             </div>
@@ -324,14 +325,14 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* Programme Section */}
-        <section className="section-padding bg-gray-50">
+        <section className="py-12 md:py-16 lg:py-24 bg-gray-50">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                   Le programme <span className="text-gradient">Feel Great</span>
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
                   Un protocole simple et efficace basé sur le jeûne intermittent, soutenu par deux produits scientifiquement formulés.
                 </p>
                 <div className="space-y-4">
@@ -397,13 +398,13 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* Témoignages */}
-        <section className="section-padding">
+        <section className="py-12 md:py-16 lg:py-24">
           <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
                 Ils ont transformé leur quotidien
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
                 Découvrez les témoignages de nos clients
               </p>
             </div>
@@ -463,12 +464,12 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* CTA Final */}
-        <section className="section-padding bg-gradient-to-br from-flore-orange-50 to-flore-orange-100">
+        <section className="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-flore-orange-50 to-flore-orange-100">
           <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
               Prêt à transformer votre bien-être ?
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
               Rejoignez des milliers de personnes qui ont déjà adopté le programme Feel Great.
             </p>
             <a
