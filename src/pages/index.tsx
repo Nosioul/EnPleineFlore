@@ -86,13 +86,13 @@ const HomePage: React.FC = () => {
           <h3 className="text-xl md:text-2xl font-bold text-white">Qu'est-ce que c'est ?</h3>
         </div>
         <div className="p-6 md:p-8">
-          <p className="text-gray-700 leading-relaxed mb-4">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
             <span className="font-semibold text-gray-900">L'insulinorésistance</span> se produit lorsque vos cellules (muscles, foie, tissu adipeux) deviennent moins sensibles à l'action de l'insuline.
           </p>
-          <p className="text-gray-700 leading-relaxed mb-4">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
             Normalement, l'insuline permet au glucose de pénétrer dans les cellules pour produire de l'énergie. Mais lorsque les cellules résistent, le sucre reste dans le sang.
           </p>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
             Pour compenser, votre pancréas sécrète <span className="font-semibold text-orange-600">toujours plus d'insuline</span>, créant un cercle vicieux qui peut mener au diabète de type 2.
           </p>
         </div>
@@ -105,28 +105,28 @@ const HomePage: React.FC = () => {
           <h3 className="text-xl md:text-2xl font-bold text-white">Les conséquences</h3>
         </div>
         <div className="p-6 md:p-8">
-          <p className="text-gray-700 leading-relaxed mb-5">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
             Si elle n'est pas prise en charge, l'insulinorésistance entraîne des complications sérieuses :
           </p>
-          <ul className="space-y-3 text-gray-700">
+          <ul className="space-y-2 md:space-y-3 text-gray-700 text-xs md:text-base">
             <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-2 text-xl">•</span>
+              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
               <span><span className="font-semibold">Diabète de type 2</span> : épuisement du pancréas et glycémie chroniquement élevée</span>
             </li>
             <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-2 text-xl">•</span>
+              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
               <span><span className="font-semibold">Syndrome métabolique</span> : obésité abdominale, hypertension, dyslipidémie</span>
             </li>
             <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-2 text-xl">•</span>
+              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
               <span><span className="font-semibold">Risques cardiovasculaires</span> augmentés de 37%</span>
             </li>
             <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-2 text-xl">•</span>
+              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
               <span><span className="font-semibold">Inflammation chronique</span> et stress oxydatif</span>
             </li>
             <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-2 text-xl">•</span>
+              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
               <span><span className="font-semibold">Fatigue persistante</span> et troubles métaboliques</span>
             </li>
           </ul>
@@ -140,55 +140,55 @@ const HomePage: React.FC = () => {
           <h3 className="text-xl md:text-2xl font-bold text-white">La solution Feel Great</h3>
         </div>
         <div className="p-6 md:p-8">
-          <p className="text-gray-700 leading-relaxed mb-5">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
             Le programme Feel Great combine deux produits scientifiquement validés pour agir en synergie :
           </p>
           
-          <div className="mb-6">
-            <h4 className="font-bold text-lg text-orange-600 mb-3 flex items-center">
-              <span className="bg-orange-100 rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm">1</span>
-              Balance (Matrice de fibres)
+          <div className="mb-5 md:mb-6">
+            <h4 className="font-bold text-base md:text-lg text-orange-600 mb-2 md:mb-3 flex items-center">
+              <span className="bg-orange-100 rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center mr-2 text-xs md:text-sm flex-shrink-0">1</span>
+              <span className="leading-tight">Balance (Matrice de fibres)</span>
             </h4>
-            <ul className="space-y-2 text-gray-700 text-sm">
+            <ul className="space-y-1.5 md:space-y-2 text-gray-700 text-xs md:text-sm">
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Réduit la glycémie de <span className="font-semibold">20-28%</span> après les repas</span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Diminue l'insuline sanguine de <span className="font-semibold">13-27%</span></span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Ralentit l'absorption des glucides grâce au gel de fibres</span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Améliore la sensibilité à l'insuline naturellement</span>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-lg text-green-600 mb-3 flex items-center">
-              <span className="bg-green-100 rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm">2</span>
-              Unimate (Yerba Maté concentré)
+            <h4 className="font-bold text-base md:text-lg text-green-600 mb-2 md:mb-3 flex items-center">
+              <span className="bg-green-100 rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center mr-2 text-xs md:text-sm flex-shrink-0">2</span>
+              <span className="leading-tight">Unimate (Yerba Maté concentré)</span>
             </h4>
-            <ul className="space-y-2 text-gray-700 text-sm">
+            <ul className="space-y-1.5 md:space-y-2 text-gray-700 text-xs md:text-sm">
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Stimule le <span className="font-semibold">métabolisme cellulaire</span> et la production d'énergie</span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Améliore la <span className="font-semibold">signalisation de l'insuline</span></span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Favorise la combustion des graisses (thermogenèse)</span>
               </li>
               <li className="flex items-start">
-                <span className="text-green-500 mr-2">→</span>
+                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
                 <span>Riche en antioxydants protecteurs</span>
               </li>
             </ul>
@@ -198,15 +198,15 @@ const HomePage: React.FC = () => {
     </div>
 
     {/* Encadré scientifique avec validation clinique */}
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border-l-4 border-indigo-500 shadow-md hover:shadow-xl transition-shadow duration-300">
+    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl md:rounded-2xl p-4 md:p-8 border-l-4 border-indigo-500 shadow-md hover:shadow-xl transition-shadow duration-300">
       <div className="flex items-start">
-        <div className="text-5xl mr-6 flex-shrink-0">🔬</div>
+        <div className="text-3xl md:text-5xl mr-3 md:mr-6 flex-shrink-0">🔬</div>
         <div>
-          <h4 className="text-2xl font-bold text-gray-900 mb-4">Validation scientifique</h4>
-          <p className="text-gray-700 leading-relaxed mb-4">
+          <h4 className="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-4">Validation scientifique</h4>
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
             Le système Feel Great a fait l'objet de <span className="font-semibold">plus de 35 ans de recherche</span> clinique par des institutions de premier plan : Cleveland Clinic, UCLA, Mayo Clinic, Stanford School of Medicine et l'Université de Sydney.
           </p>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
             Les études démontrent une <span className="font-semibold text-indigo-600">amélioration significative</span> du contrôle glycémique, une réduction de l'hyperinsulinémie, et une diminution des lipides plasmatiques chez les patients atteints de syndrome métabolique. Balance est répertorié dans le <span className="italic">Prescribers Desk Reference</span> depuis 2002.
           </p>
         </div>
@@ -335,32 +335,32 @@ const HomePage: React.FC = () => {
                 <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
                   Un protocole simple et efficace basé sur le jeûne intermittent, soutenu par deux produits scientifiquement formulés.
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-flore-orange-600 font-bold">1</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                      <span className="text-flore-orange-600 font-bold text-sm md:text-base">1</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">Matin : Unimate</h3>
-                      <p className="text-gray-600">Commencez votre journée avec énergie et concentration.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">Matin : Unimate</h3>
+                      <p className="text-gray-600 text-xs md:text-base">Commencez votre journée avec énergie et concentration.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-flore-orange-600 font-bold">2</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                      <span className="text-flore-orange-600 font-bold text-sm md:text-base">2</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">Repas : Balance</h3>
-                      <p className="text-gray-600">Prenez Balance avant vos repas pour réguler votre glycémie.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">Repas : Balance</h3>
+                      <p className="text-gray-600 text-xs md:text-base">Prenez Balance avant vos repas pour réguler votre glycémie.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-12 h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-flore-orange-600 font-bold">3</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-flore-orange-100 rounded-full flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                      <span className="text-flore-orange-600 font-bold text-sm md:text-base">3</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">Jeûne intermittent facilité</h3>
-                      <p className="text-gray-600">Profitez des bénéfices du jeûne sans la sensation de faim.</p>
+                      <h3 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">Jeûne intermittent facilité</h3>
+                      <p className="text-gray-600 text-xs md:text-base">Profitez des bénéfices du jeûne sans la sensation de faim.</p>
                     </div>
                   </div>
                 </div>
@@ -370,26 +370,26 @@ const HomePage: React.FC = () => {
                   </Link>
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-xl">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-5 md:mb-6 text-center">
                   Votre journée type
                 </h3>
-                <div className="space-y-4">
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <div className="font-semibold text-gray-900">7h00 - Réveil</div>
-                    <div className="text-gray-600">Buvez Unimate pour démarrer</div>
+                <div className="space-y-3 md:space-y-4">
+                  <div className="border-l-4 border-green-500 pl-3 md:pl-4">
+                    <div className="font-semibold text-gray-900 text-sm md:text-base">7h00 - Réveil</div>
+                    <div className="text-gray-600 text-xs md:text-base">Buvez Unimate pour démarrer</div>
                   </div>
-                  <div className="border-l-4 border-gray-300 pl-4">
-                    <div className="font-semibold text-gray-900">7h30 - 12h00</div>
-                    <div className="text-gray-600">Période de jeûne énergique</div>
+                  <div className="border-l-4 border-gray-300 pl-3 md:pl-4">
+                    <div className="font-semibold text-gray-900 text-sm md:text-base">7h30 - 12h00</div>
+                    <div className="text-gray-600 text-xs md:text-base">Période de jeûne énergique</div>
                   </div>
-                  <div className="border-l-4 border-flore-orange-500 pl-4">
-                    <div className="font-semibold text-gray-900">12h00 - Déjeuner</div>
-                    <div className="text-gray-600">Balance 15 min avant le repas</div>
+                  <div className="border-l-4 border-flore-orange-500 pl-3 md:pl-4">
+                    <div className="font-semibold text-gray-900 text-sm md:text-base">12h00 - Déjeuner</div>
+                    <div className="text-gray-600 text-xs md:text-base">Balance 15 min avant le repas</div>
                   </div>
-                  <div className="border-l-4 border-flore-orange-500 pl-4">
-                    <div className="font-semibold text-gray-900">19h00 - Dîner</div>
-                    <div className="text-gray-600">Balance 15 min avant le repas</div>
+                  <div className="border-l-4 border-flore-orange-500 pl-3 md:pl-4">
+                    <div className="font-semibold text-gray-900 text-sm md:text-base">19h00 - Dîner</div>
+                    <div className="text-gray-600 text-xs md:text-base">Balance 15 min avant le repas</div>
                   </div>
                 </div>
               </div>
