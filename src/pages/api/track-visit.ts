@@ -15,12 +15,23 @@ export default async function handler(
   try {
     const { page, userAgent, referrer } = req.body;
 
-    // Charger les credentials
-    const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
-    const auth = new google.auth.GoogleAuth({
-      keyFile: credentialsPath,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
+    // Charger les credentials (depuis variable d'environnement en production, fichier en local)
+    let auth;
+    if (process.env.GOOGLE_CREDENTIALS) {
+      // En production (Vercel)
+      const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+      auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+    } else {
+      // En local
+      const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
+      auth = new google.auth.GoogleAuth({
+        keyFile: credentialsPath,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+    }
 
     const sheets = google.sheets({ version: 'v4', auth });
 
