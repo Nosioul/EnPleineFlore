@@ -31,6 +31,7 @@ export default function Document() {
     "@type": "Product",
     "name": "Programme Feel Great",
     "description": "Programme complet Feel Great avec Unimate et Balance pour optimiser votre bien-être et votre microbiote",
+    "image": "https://en-pleine-flore.com/images/Feel-great.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Unicity"
@@ -39,7 +40,14 @@ export default function Document() {
       "@type": "Offer",
       "url": "https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648",
       "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
+      "price": "99.00",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "2026-12-31"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "1"
     }
   };
 
