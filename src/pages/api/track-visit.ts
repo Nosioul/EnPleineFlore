@@ -13,7 +13,7 @@ export default async function handler(
   }
 
   try {
-    const { page, userAgent, referrer } = req.body;
+    const { page, userAgent, referrer, sessionId, visitCount } = req.body;
 
     // Charger les credentials (depuis variable d'environnement en production, fichier en local)
     let auth;
@@ -77,30 +77,91 @@ export default async function handler(
     else if (ua.includes('Safari')) browser = 'Safari';
     else if (ua.includes('Edge')) browser = 'Edge';
 
-    // Préparer les données à ajouter
-    const values = [
-      [
-        dateStr,
-        timeStr,
-        page,
-        deviceType,
-        browser,
-        country,
-        city,
-        ip,
-        referrer || 'Direct',
-      ],
-    ];
-
-    // Ajouter une ligne au Google Sheet
-    await sheets.spreadsheets.values.append({
+    // Chercher si une session existe déjà pour cet utilisateur (par IP)
+    const existingData = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A:I', // Maintenant on a 9 colonnes (A à I)
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values,
-      },
+      range: 'A:K', // Maintenant on a 11 colonnes
     });
+
+    const rows = existingData.data.values || [];
+    let existingRowIndex = -1;
+
+    // Chercher la ligne existante avec le même sessionId ou IP
+    for (let i = 1; i < rows.length; i++) {
+      const rowSessionId = rows[i][9]; // Colonne J (index 9)
+      const rowIp = rows[i][7]; // Colonne H (index 7)
+
+      if ((sessionId && rowSessionId === sessionId) || rowIp === ip) {
+        existingRowIndex = i;
+        break;
+      }
+    }
+
+    if (existingRowIndex > 0) {
+      // Mise à jour de la ligne existante
+      const existingRow = rows[existingRowIndex];
+      const existingPages = existingRow[2] || ''; // Pages visitées
+      const existingPageCount = parseInt(existingRow[10] || '0'); // Nombre de pages
+
+      // Ajouter la nouvelle page si elle n'est pas déjà dans la liste
+      const pagesArray = existingPages.split(', ').filter((p: string) => p);
+      if (!pagesArray.includes(page) && !page.includes('Click:')) {
+        pagesArray.push(page);
+      }
+
+      const updatedValues = [
+        [
+          dateStr, // Date de dernière visite
+          timeStr, // Heure de dernière visite
+          pagesArray.join(', '), // Pages visitées
+          deviceType,
+          browser,
+          country,
+          city,
+          ip,
+          referrer || 'Direct',
+          sessionId || 'unknown',
+          pagesArray.length.toString(), // Nombre de pages vues
+          visitCount.toString(), // Nombre de visites
+        ],
+      ];
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `A${existingRowIndex + 1}:L${existingRowIndex + 1}`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: updatedValues,
+        },
+      });
+    } else {
+      // Nouvelle session - créer une nouvelle ligne
+      const newValues = [
+        [
+          dateStr,
+          timeStr,
+          page,
+          deviceType,
+          browser,
+          country,
+          city,
+          ip,
+          referrer || 'Direct',
+          sessionId || 'unknown',
+          '1', // Première page vue
+          visitCount.toString(), // Nombre de visites
+        ],
+      ];
+
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'A:L',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: newValues,
+        },
+      });
+    }
 
     res.status(200).json({ success: true });
   } catch (error) {

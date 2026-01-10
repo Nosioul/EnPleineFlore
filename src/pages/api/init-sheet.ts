@@ -37,21 +37,24 @@ export default async function handler(
     // Ajouter les en-têtes
     const headers = [
       [
-        'Date',
-        'Heure',
-        'Page visitée',
+        'Date dernière visite',
+        'Heure dernière visite',
+        'Pages visitées',
         'Type d\'appareil',
         'Navigateur',
         'Pays',
         'Ville',
         'IP',
         'Source',
+        'Session ID',
+        'Nb pages vues',
+        'Nb visites',
       ],
     ];
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A1:I1',
+      range: 'A1:L1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: headers,
