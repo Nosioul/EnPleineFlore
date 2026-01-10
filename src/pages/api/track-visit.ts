@@ -42,7 +42,8 @@ export default async function handler(
     let country = 'Unknown';
     let city = 'Unknown';
 
-    if (ip && ip !== 'Unknown' && ip !== '::1' && ip !== '127.0.0.1' && !ip.startsWith('192.168')) {
+    const ipStr = typeof ip === 'string' ? ip : String(ip);
+    if (ip && ip !== 'Unknown' && ip !== '::1' && ip !== '127.0.0.1' && !ipStr.startsWith('192.168')) {
       try {
         const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
         if (geoResponse.ok) {
