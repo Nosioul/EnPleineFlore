@@ -31,6 +31,8 @@ export default async function handler(
         'Page visitée',
         'Type d\'appareil',
         'Navigateur',
+        'Pays',
+        'Ville',
         'IP',
         'Source',
       ],
@@ -38,7 +40,7 @@ export default async function handler(
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A1:G1',
+      range: 'A1:I1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: headers,

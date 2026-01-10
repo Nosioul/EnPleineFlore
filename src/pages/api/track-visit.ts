@@ -27,6 +27,23 @@ export default async function handler(
     // Obtenir l'adresse IP du visiteur
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'Unknown';
 
+    // Obtenir la géolocalisation (seulement si l'IP n'est pas locale)
+    let country = 'Unknown';
+    let city = 'Unknown';
+
+    if (ip && ip !== 'Unknown' && ip !== '::1' && ip !== '127.0.0.1' && !ip.startsWith('192.168')) {
+      try {
+        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+        if (geoResponse.ok) {
+          const geoData = await geoResponse.json();
+          country = geoData.country_name || 'Unknown';
+          city = geoData.city || 'Unknown';
+        }
+      } catch (error) {
+        console.error('Error fetching geolocation:', error);
+      }
+    }
+
     // Obtenir la date et l'heure actuelles
     const now = new Date();
     const dateStr = now.toLocaleDateString('fr-FR');
@@ -56,6 +73,8 @@ export default async function handler(
         page,
         deviceType,
         browser,
+        country,
+        city,
         ip,
         referrer || 'Direct',
       ],
@@ -64,7 +83,7 @@ export default async function handler(
     // Ajouter une ligne au Google Sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A:G', // Sans le nom de la feuille, utilise la première feuille par défaut
+      range: 'A:I', // Maintenant on a 9 colonnes (A à I)
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values,
