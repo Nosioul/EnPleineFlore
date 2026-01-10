@@ -3,8 +3,11 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import { useTrackPurchaseClick } from '../hooks/useVisitTracker';
 
 const HomePage: React.FC = () => {
+  const { trackClick } = useTrackPurchaseClick();
+
   return (
     <>
       <SEO 
@@ -34,6 +37,7 @@ const HomePage: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary text-lg"
+                    onClick={() => trackClick('Acheter via partenaire - Hero')}
                   >
                     Acheter via partenaire →
                   </a>

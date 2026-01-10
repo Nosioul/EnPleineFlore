@@ -4,9 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import '../styles/globals.css';
 import ClickSpark from '../components/ClickSpark';
+import { useVisitTracker } from '../hooks/useVisitTracker';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+
+  // Tracking automatique des visites
+  useVisitTracker();
 
   return (
     <ClickSpark
