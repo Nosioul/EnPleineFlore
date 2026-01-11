@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
+import path from 'path';
 
 // Stocker les RDV déjà traités en mémoire (simple et efficace)
 const processedAppointments = new Set<string>();
@@ -13,7 +15,7 @@ export default async function handler(
   }
 
   try {
-    const { email, name, date, time } = req.query;
+    const { email, name, date, time, eventId } = req.query;
 
     if (!email || !name || !date || !time) {
       return res.status(400).json({ message: 'Paramètres manquants' });
@@ -77,6 +79,44 @@ export default async function handler(
 
     // Marquer ce RDV comme traité
     processedAppointments.add(appointmentKey);
+
+    // Supprimer l'événement du Google Calendar si eventId est fourni
+    if (eventId) {
+      try {
+        // Charger les credentials Google
+        let auth;
+        if (process.env.GOOGLE_CREDENTIALS) {
+          const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+          auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: [
+              'https://www.googleapis.com/auth/spreadsheets',
+              'https://www.googleapis.com/auth/calendar',
+            ],
+          });
+        } else {
+          const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
+          auth = new google.auth.GoogleAuth({
+            keyFile: credentialsPath,
+            scopes: [
+              'https://www.googleapis.com/auth/spreadsheets',
+              'https://www.googleapis.com/auth/calendar',
+            ],
+          });
+        }
+
+        const calendar = google.calendar({ version: 'v3', auth });
+
+        // Supprimer l'événement
+        await calendar.events.delete({
+          calendarId: '85c754fb0c43f672ffe00dbfd1e1f1c6dc3e1e25cf34dcc1b81c80ed2f642495@group.calendar.google.com',
+          eventId: eventId as string,
+        });
+      } catch (error) {
+        console.error('Erreur lors de la suppression de l\'événement:', error);
+        // On continue quand même pour envoyer l'email
+      }
+    }
 
     // Configurer nodemailer pour Gmail
     const transporter = nodemailer.createTransport({
