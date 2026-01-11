@@ -159,7 +159,7 @@ export default async function handler(
           eventId: eventId as string,
           requestBody: {
             ...existingEvent.data,
-            summary: `☑️RDV validé`,
+            summary: `☑️RDV avec ${name} validé`,
           },
         });
       } catch (error) {
