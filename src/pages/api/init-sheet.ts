@@ -45,6 +45,7 @@ export default async function handler(
         'Pays',
         'Ville',
         'IP',
+        'User Agent',
         'Source',
         'Nb visites',
       ],
@@ -52,7 +53,7 @@ export default async function handler(
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A1:J1',
+      range: 'A1:K1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: headers,

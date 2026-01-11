@@ -80,17 +80,20 @@ export default async function handler(
     // Récupérer uniquement la dernière ligne du tableau
     const existingData = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A:J', // 10 colonnes maintenant (9 + Nb visites)
+      range: 'A:K', // 11 colonnes maintenant (9 + User Agent + Nb visites)
     });
 
     const rows = existingData.data.values || [];
     const lastRow = rows.length > 1 ? rows[rows.length - 1] : null;
 
-    // Vérifier si la dernière ligne a la même IP
-    if (lastRow && lastRow[7] === ip) {
-      // Même IP → on met à jour la ligne existante
+    // Vérifier si la dernière ligne a la même IP ET le même User Agent
+    const lastRowIp = lastRow ? lastRow[7] : null;
+    const lastRowUserAgent = lastRow ? lastRow[8] : null;
+
+    if (lastRow && lastRowIp === ip && lastRowUserAgent === userAgent) {
+      // Même IP + même User Agent → on met à jour la ligne existante
       const existingPages = lastRow[2] || ''; // Pages visitées
-      const existingVisitCount = parseInt(lastRow[9] || '1'); // Nb visites
+      const existingVisitCount = parseInt(lastRow[10] || '1'); // Nb visites
 
       // Ajouter la nouvelle page aux pages existantes
       const pagesArray = existingPages.split(', ').filter((p: string) => p);
@@ -108,6 +111,7 @@ export default async function handler(
           country,
           city,
           ip,
+          userAgent, // User Agent
           referrer || 'Direct',
           (existingVisitCount + 1).toString(), // Incrémenter Nb visites
         ],
@@ -116,14 +120,14 @@ export default async function handler(
       // Mettre à jour la dernière ligne
       await sheets.spreadsheets.values.update({
         spreadsheetId: SPREADSHEET_ID,
-        range: `A${rows.length}:J${rows.length}`,
+        range: `A${rows.length}:K${rows.length}`,
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: updatedValues,
         },
       });
     } else {
-      // IP différente → créer une nouvelle ligne
+      // IP différente OU User Agent différent → créer une nouvelle ligne
       const newValues = [
         [
           dateStr,
@@ -134,6 +138,7 @@ export default async function handler(
           country,
           city,
           ip,
+          userAgent, // User Agent
           referrer || 'Direct',
           '1', // Première visite
         ],
@@ -141,7 +146,7 @@ export default async function handler(
 
       await sheets.spreadsheets.values.append({
         spreadsheetId: SPREADSHEET_ID,
-        range: 'A:J',
+        range: 'A:K',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: newValues,
