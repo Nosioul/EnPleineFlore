@@ -4,6 +4,39 @@ import path from 'path';
 
 const SPREADSHEET_ID = '1BOIRo37MAzk-91YRdaPhGEX4TpfeQ4YXROz5FveBNEo';
 
+// Fonction pour calculer le temps passé entre deux heures
+function calculateTimeSpent(startTime: string, endTime: string): string {
+  try {
+    // Format: "HH:MM:SS"
+    const [startH, startM, startS] = startTime.split(':').map(Number);
+    const [endH, endM, endS] = endTime.split(':').map(Number);
+
+    const startSeconds = startH * 3600 + startM * 60 + startS;
+    const endSeconds = endH * 3600 + endM * 60 + endS;
+
+    let diffSeconds = endSeconds - startSeconds;
+
+    // Si l'heure de fin est inférieure (passage minuit), ajouter 24h
+    if (diffSeconds < 0) {
+      diffSeconds += 24 * 3600;
+    }
+
+    const hours = Math.floor(diffSeconds / 3600);
+    const minutes = Math.floor((diffSeconds % 3600) / 60);
+    const seconds = diffSeconds % 60;
+
+    if (hours > 0) {
+      return `${hours}h ${minutes}min`;
+    } else if (minutes > 0) {
+      return `${minutes}min ${seconds}s`;
+    } else {
+      return `${seconds}s`;
+    }
+  } catch (error) {
+    return '0s';
+  }
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -61,13 +94,15 @@ export default async function handler(
     const dateStr = now.toLocaleDateString('fr-FR');
     const timeStr = now.toLocaleTimeString('fr-FR');
 
-    // Déterminer le type d'appareil
+    // Déterminer la résolution (Tel/PC/Tablette/Autre)
     const ua = userAgent || '';
-    let deviceType = 'Desktop';
-    if (/mobile/i.test(ua)) {
-      deviceType = 'Mobile';
+    let resolution = 'PC';
+    if (/mobile/i.test(ua) && !/tablet|ipad/i.test(ua)) {
+      resolution = 'Tel';
     } else if (/tablet|ipad/i.test(ua)) {
-      deviceType = 'Tablet';
+      resolution = 'Tablette';
+    } else if (!ua || ua === '') {
+      resolution = 'Autre';
     }
 
     // Déterminer le navigateur
@@ -80,7 +115,7 @@ export default async function handler(
     // Récupérer uniquement la dernière ligne du tableau
     const existingData = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A:K', // 11 colonnes maintenant (9 + User Agent + Nb visites)
+      range: 'A:N', // 14 colonnes maintenant
     });
 
     const rows = existingData.data.values || [];
@@ -90,10 +125,16 @@ export default async function handler(
     const lastRowIp = lastRow ? lastRow[7] : null;
     const lastRowUserAgent = lastRow ? lastRow[8] : null;
 
+    // Détecter si c'est une conversion (clic sur bouton achat)
+    const isConversion = page.includes('Click:');
+    const conversionText = isConversion ? page.split('Click: ')[1] || 'Oui' : '';
+
     if (lastRow && lastRowIp === ip && lastRowUserAgent === userAgent) {
       // Même IP + même User Agent → on met à jour la ligne existante
       const existingPages = lastRow[2] || ''; // Pages visitées
       const existingVisitCount = parseInt(lastRow[10] || '1'); // Nb visites
+      const firstVisitTime = lastRow[1] || timeStr; // Heure première visite
+      const existingConversion = lastRow[12] || ''; // Conversion existante
 
       // Ajouter la nouvelle page aux pages existantes
       const pagesArray = existingPages.split(', ').filter((p: string) => p);
@@ -101,12 +142,21 @@ export default async function handler(
         pagesArray.push(page);
       }
 
+      // Calculer le temps passé (différence entre maintenant et première visite)
+      const timeSpent = calculateTimeSpent(firstVisitTime, timeStr);
+
+      // Mettre à jour la conversion si c'est un clic
+      let conversion = existingConversion;
+      if (isConversion && !conversion.includes(conversionText)) {
+        conversion = conversion ? `${conversion}, ${conversionText}` : conversionText;
+      }
+
       const updatedValues = [
         [
           dateStr, // Date mise à jour
           timeStr, // Heure mise à jour
           pagesArray.join(', '), // Pages cumulées
-          deviceType,
+          resolution, // Tel/PC/Tablette/Autre
           browser,
           country,
           city,
@@ -114,13 +164,16 @@ export default async function handler(
           userAgent, // User Agent
           referrer || 'Direct',
           (existingVisitCount + 1).toString(), // Incrémenter Nb visites
+          timeSpent, // Temps passé
+          conversion || '-', // Conversion
+          'Récurrent', // Type visiteur
         ],
       ];
 
       // Mettre à jour la dernière ligne
       await sheets.spreadsheets.values.update({
         spreadsheetId: SPREADSHEET_ID,
-        range: `A${rows.length}:K${rows.length}`,
+        range: `A${rows.length}:N${rows.length}`,
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: updatedValues,
@@ -133,7 +186,7 @@ export default async function handler(
           dateStr,
           timeStr,
           page,
-          deviceType,
+          resolution, // Tel/PC/Tablette/Autre
           browser,
           country,
           city,
@@ -141,12 +194,15 @@ export default async function handler(
           userAgent, // User Agent
           referrer || 'Direct',
           '1', // Première visite
+          '0s', // Temps passé (début de session)
+          isConversion ? conversionText : '-', // Conversion
+          'Nouveau', // Type visiteur
         ],
       ];
 
       await sheets.spreadsheets.values.append({
         spreadsheetId: SPREADSHEET_ID,
-        range: 'A:K',
+        range: 'A:N',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: newValues,

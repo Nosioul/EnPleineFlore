@@ -40,7 +40,7 @@ export default async function handler(
         'Date',
         'Heure',
         'Page visitée',
-        'Type d\'appareil',
+        'Résolution',
         'Navigateur',
         'Pays',
         'Ville',
@@ -48,12 +48,15 @@ export default async function handler(
         'User Agent',
         'Source',
         'Nb visites',
+        'Temps passé',
+        'Conversion',
+        'Type visiteur',
       ],
     ];
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A1:K1',
+      range: 'A1:N1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: headers,
