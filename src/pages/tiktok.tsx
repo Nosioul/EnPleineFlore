@@ -205,6 +205,13 @@ const TikTokPage: React.FC = () => {
               </a>
 
               <Link
+                href="/rendez-vous"
+                className="inline-block px-10 py-5 text-xl font-bold text-white bg-transparent border-4 border-white rounded-2xl transform transition-all duration-300 hover:scale-110 hover:bg-white hover:text-flore-orange-600"
+              >
+                📅 PRENDRE RDV
+              </Link>
+
+              <Link
                 href="/"
                 className="inline-block px-10 py-5 text-xl font-bold text-white bg-transparent border-4 border-white rounded-2xl transform transition-all duration-300 hover:scale-110 hover:bg-white hover:text-flore-orange-600"
               >

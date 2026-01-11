@@ -98,23 +98,33 @@ ${message || 'Aucun message'}
     const clientMailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
-      subject: 'Confirmation de votre rendez-vous - En Pleine Flore',
+      subject: 'Demande de rendez-vous reçue - En Pleine Flore',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #4CAF50;">Rendez-vous confirmé ✓</h2>
+          <h2 style="color: #FF9800;">📅 Demande de rendez-vous reçue</h2>
           <p>Bonjour ${name},</p>
-          <p>Votre rendez-vous a bien été enregistré pour le :</p>
-          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <p style="margin: 5px 0;"><strong>Date :</strong> ${new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            <p style="margin: 5px 0;"><strong>Heure :</strong> ${time}</p>
+          <p>Nous avons bien reçu votre <strong>demande de rendez-vous</strong> pour le :</p>
+          <div style="background-color: #fff3e0; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #FF9800;">
+            <p style="margin: 5px 0;"><strong>📅 Date souhaitée :</strong> ${new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p style="margin: 5px 0;"><strong>🕐 Heure souhaitée :</strong> ${time}</p>
           </div>
-          <p>Nous vous contacterons prochainement pour confirmer ce rendez-vous.</p>
+          <div style="background-color: #e3f2fd; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #2196F3;">
+            <p style="margin: 0; color: #1565c0;">
+              ℹ️ <strong>Votre rendez-vous n'est pas encore confirmé.</strong><br>
+              Nous allons vérifier nos disponibilités et vous enverrons un email de confirmation dans les plus brefs délais.
+            </p>
+          </div>
           ${message ? `<p><strong>Votre message :</strong><br>${message}</p>` : ''}
-          <p>À bientôt !</p>
-          <p style="color: #666; font-size: 12px; margin-top: 30px;">En Pleine Flore</p>
+          <p>Merci pour votre confiance !</p>
+          <p style="color: #666; font-size: 12px; margin-top: 30px;">L'équipe En Pleine Flore</p>
         </div>
       `,
     };
+
+    // Construire les URLs de confirmation/refus
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const confirmUrl = `${baseUrl}/api/confirm-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}`;
+    const declineUrl = `${baseUrl}/api/decline-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}`;
 
     // Email de notification pour vous (envoyé à 3 adresses)
     const adminMailOptions = {
@@ -122,15 +132,32 @@ ${message || 'Aucun message'}
       to: ['louison.charm@gmail.com', 'mijocharme@gmail.com', 'en.pleine.flore@gmail.com'],
       subject: `Nouveau RDV : ${name} - ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`,
       html: `
-        <div style="font-family: Arial, sans-serif;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #2196F3;">Nouveau rendez-vous reçu</h2>
-          <p><strong>Nom :</strong> ${name}</p>
-          <p><strong>Email :</strong> ${email}</p>
-          <p><strong>Téléphone :</strong> ${phone || 'Non fourni'}</p>
-          <p><strong>Date :</strong> ${new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          <p><strong>Heure :</strong> ${time}</p>
-          ${message ? `<p><strong>Message :</strong><br>${message}</p>` : ''}
-          <p style="margin-top: 20px; color: #666;">L'événement a été ajouté à votre Google Calendar.</p>
+
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 8px 0;"><strong>👤 Nom :</strong> ${name}</p>
+            <p style="margin: 8px 0;"><strong>📧 Email :</strong> ${email}</p>
+            <p style="margin: 8px 0;"><strong>📱 Téléphone :</strong> ${phone || 'Non fourni'}</p>
+            <p style="margin: 8px 0;"><strong>📅 Date :</strong> ${new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p style="margin: 8px 0;"><strong>🕐 Heure :</strong> ${time}</p>
+            ${message ? `<p style="margin: 8px 0;"><strong>💬 Message :</strong><br>${message}</p>` : ''}
+          </div>
+
+          <p style="font-size: 16px; font-weight: bold; color: #333; margin-top: 30px;">Ce rendez-vous vous convient-il ?</p>
+
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${confirmUrl}" style="display: inline-block; background: #4CAF50; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 0 10px; font-size: 16px;">
+              ✅ OUI - Confirmer
+            </a>
+            <a href="${declineUrl}" style="display: inline-block; background: #f44336; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 0 10px; font-size: 16px;">
+              ❌ NON - Refuser
+            </a>
+          </div>
+
+          <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 13px;">
+            ℹ️ L'événement a été ajouté à votre Google Calendar "RDV En-pleine-flore"
+          </p>
         </div>
       `,
     };

@@ -38,6 +38,10 @@ const Header: React.FC = () => {
               Pourquoi nous?
             </Link>
 
+            <Link href="/rendez-vous" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
+              Rendez-vous
+            </Link>
+
             <a
               href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
               target="_blank"
@@ -88,6 +92,9 @@ const Header: React.FC = () => {
 
               <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Pourquoi nous?
+              </Link>
+              <Link href="/rendez-vous" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
+                Rendez-vous
               </Link>
               <a
                 href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
