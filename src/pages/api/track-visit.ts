@@ -4,39 +4,6 @@ import path from 'path';
 
 const SPREADSHEET_ID = '1BOIRo37MAzk-91YRdaPhGEX4TpfeQ4YXROz5FveBNEo';
 
-// Fonction pour calculer le temps passé entre deux heures
-function calculateTimeSpent(startTime: string, endTime: string): string {
-  try {
-    // Format: "HH:MM:SS"
-    const [startH, startM, startS] = startTime.split(':').map(Number);
-    const [endH, endM, endS] = endTime.split(':').map(Number);
-
-    const startSeconds = startH * 3600 + startM * 60 + startS;
-    const endSeconds = endH * 3600 + endM * 60 + endS;
-
-    let diffSeconds = endSeconds - startSeconds;
-
-    // Si l'heure de fin est inférieure (passage minuit), ajouter 24h
-    if (diffSeconds < 0) {
-      diffSeconds += 24 * 3600;
-    }
-
-    const hours = Math.floor(diffSeconds / 3600);
-    const minutes = Math.floor((diffSeconds % 3600) / 60);
-    const seconds = diffSeconds % 60;
-
-    if (hours > 0) {
-      return `${hours}h ${minutes}min`;
-    } else if (minutes > 0) {
-      return `${minutes}min ${seconds}s`;
-    } else {
-      return `${seconds}s`;
-    }
-  } catch (error) {
-    return '0s';
-  }
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -115,7 +82,7 @@ export default async function handler(
     // Récupérer uniquement la dernière ligne du tableau
     const existingData = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A:N', // 14 colonnes maintenant
+      range: 'A:M', // 13 colonnes maintenant
     });
 
     const rows = existingData.data.values || [];
@@ -133,22 +100,18 @@ export default async function handler(
       // Même IP + même User Agent → on met à jour la ligne existante
       const existingPages = lastRow[2] || ''; // Pages visitées
       const existingVisitCount = parseInt(lastRow[10] || '1'); // Nb visites
-      const firstVisitTime = lastRow[1] || timeStr; // Heure première visite
-      const existingConversion = lastRow[12] || ''; // Conversion existante
+      const existingConversion = lastRow[11] || ''; // Conversion existante
 
-      // Ajouter la nouvelle page aux pages existantes
+      // Ajouter la nouvelle page aux pages existantes (sauf si c'est un clic)
       const pagesArray = existingPages.split(', ').filter((p: string) => p);
-      if (!pagesArray.includes(page)) {
+      if (!pagesArray.includes(page) && !isConversion) {
         pagesArray.push(page);
       }
 
-      // Calculer le temps passé (différence entre maintenant et première visite)
-      const timeSpent = calculateTimeSpent(firstVisitTime, timeStr);
-
       // Mettre à jour la conversion si c'est un clic
       let conversion = existingConversion;
-      if (isConversion && !conversion.includes(conversionText)) {
-        conversion = conversion ? `${conversion}, ${conversionText}` : conversionText;
+      if (isConversion && conversionText && !conversion.includes(conversionText)) {
+        conversion = conversion && conversion !== '-' ? `${conversion}, ${conversionText}` : conversionText;
       }
 
       const updatedValues = [
@@ -164,7 +127,6 @@ export default async function handler(
           userAgent, // User Agent
           referrer || 'Direct',
           (existingVisitCount + 1).toString(), // Incrémenter Nb visites
-          timeSpent, // Temps passé
           conversion || '-', // Conversion
           'Récurrent', // Type visiteur
         ],
@@ -173,7 +135,7 @@ export default async function handler(
       // Mettre à jour la dernière ligne
       await sheets.spreadsheets.values.update({
         spreadsheetId: SPREADSHEET_ID,
-        range: `A${rows.length}:N${rows.length}`,
+        range: `A${rows.length}:M${rows.length}`,
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: updatedValues,
@@ -194,7 +156,6 @@ export default async function handler(
           userAgent, // User Agent
           referrer || 'Direct',
           '1', // Première visite
-          '0s', // Temps passé (début de session)
           isConversion ? conversionText : '-', // Conversion
           'Nouveau', // Type visiteur
         ],
@@ -202,7 +163,7 @@ export default async function handler(
 
       await sheets.spreadsheets.values.append({
         spreadsheetId: SPREADSHEET_ID,
-        range: 'A:N',
+        range: 'A:M',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
           values: newValues,

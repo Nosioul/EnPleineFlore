@@ -48,7 +48,6 @@ export default async function handler(
         'User Agent',
         'Source',
         'Nb visites',
-        'Temps passé',
         'Conversion',
         'Type visiteur',
       ],
@@ -56,7 +55,7 @@ export default async function handler(
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'A1:N1',
+      range: 'A1:M1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: headers,
