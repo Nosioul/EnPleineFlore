@@ -168,7 +168,18 @@ export default async function handler(
     });
 
     // Récupérer l'URL du site
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://en-pleine-flore.vercel.app';
+    // Déterminer l'URL de base (Vercel ou localhost)
+    let siteUrl;
+    if (process.env.VERCEL_URL) {
+      // En production sur Vercel
+      siteUrl = `https://${process.env.VERCEL_URL}`;
+    } else if (process.env.NEXT_PUBLIC_SITE_URL) {
+      // Variable d'environnement personnalisée
+      siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    } else {
+      // Fallback
+      siteUrl = 'https://en-pleine-flore.vercel.app';
+    }
 
     // Email de refus au client avec bouton pour reprendre RDV
     const declineMailOptions = {

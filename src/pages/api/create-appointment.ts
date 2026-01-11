@@ -124,7 +124,19 @@ ${message || 'Aucun message'}
     };
 
     // Construire les URLs de confirmation/refus
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    // Déterminer l'URL de base (Vercel ou localhost)
+    let baseUrl;
+    if (process.env.VERCEL_URL) {
+      // En production sur Vercel
+      baseUrl = `https://${process.env.VERCEL_URL}`;
+    } else if (process.env.NEXT_PUBLIC_SITE_URL) {
+      // Variable d'environnement personnalisée
+      baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    } else {
+      // En local
+      baseUrl = 'http://localhost:3000';
+    }
+
     const confirmUrl = `${baseUrl}/api/confirm-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}&eventId=${encodeURIComponent(eventId || '')}`;
     const declineUrl = `${baseUrl}/api/decline-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}&eventId=${encodeURIComponent(eventId || '')}`;
 
