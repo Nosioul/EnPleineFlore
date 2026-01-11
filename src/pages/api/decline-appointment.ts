@@ -176,6 +176,9 @@ export default async function handler(
     // Email de refus au client avec bouton pour reprendre RDV
     const declineMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; padding: 20px 0; border-bottom: 2px solid #f97316;">
+            <img src="https://en-pleine-flore.com/favicon.png" alt="En Pleine Flore" style="width: 80px; height: 80px;" />
+          </div>
           <h2 style="color: #f44336;">Rendez-vous non disponible</h2>
           <p>Bonjour ${name},</p>
           <p>Nous sommes désolés, mais le créneau que vous aviez demandé n'est malheureusement pas disponible :</p>

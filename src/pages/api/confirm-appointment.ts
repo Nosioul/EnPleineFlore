@@ -172,6 +172,9 @@ export default async function handler(
     // Email de confirmation au client
     const confirmationMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; padding: 20px 0; border-bottom: 2px solid #f97316;">
+            <img src="https://en-pleine-flore.com/favicon.png" alt="En Pleine Flore" style="width: 80px; height: 80px;" />
+          </div>
           <h2 style="color: #4CAF50;">Rendez-vous confirmé ✓</h2>
           <p>Bonjour ${name},</p>
           <p>Nous avons le plaisir de vous confirmer votre rendez-vous :</p>

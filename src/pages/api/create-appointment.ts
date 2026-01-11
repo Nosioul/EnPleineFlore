@@ -92,6 +92,9 @@ ${message || 'Aucun message'}
     // Email de confirmation au client
     const clientMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; padding: 20px 0; border-bottom: 2px solid #f97316;">
+            <img src="https://en-pleine-flore.com/favicon.png" alt="En Pleine Flore" style="width: 80px; height: 80px;" />
+          </div>
           <h2 style="color: #FF9800;">📅 Demande de rendez-vous reçue</h2>
           <p>Bonjour ${name},</p>
           <p>Nous avons bien reçu votre <strong>demande de rendez-vous</strong> pour le :</p>
@@ -131,6 +134,9 @@ ${message || 'Aucun message'}
     // Email de notification pour vous (envoyé à 3 adresses)
     const adminMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
+          <div style="text-align: center; padding: 20px 0; border-bottom: 2px solid #f97316;">
+            <img src="https://en-pleine-flore.com/favicon.png" alt="En Pleine Flore" style="width: 80px; height: 80px;" />
+          </div>
           <h2 style="color: #2196F3;">Nouveau rendez-vous reçu</h2>
 
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
