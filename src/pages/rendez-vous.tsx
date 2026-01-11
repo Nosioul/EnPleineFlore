@@ -121,18 +121,6 @@ const RendezVousPage: React.FC = () => {
                   Réservez votre créneau
                 </h2>
 
-                {submitStatus === 'error' && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <div className="flex items-start">
-                      <span className="text-2xl mr-3">❌</span>
-                      <div>
-                        <h3 className="font-semibold text-red-900 mb-1">Erreur</h3>
-                        <p className="text-sm text-red-700">{errorMessage}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Nom */}
                   <div>
@@ -259,6 +247,19 @@ const RendezVousPage: React.FC = () => {
                           <p className="text-sm text-green-700">
                             Vous allez recevoir un email de confirmation. Nous vous contacterons prochainement.
                           </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Message d'erreur affiché en dessous du bouton */}
+                  {submitStatus === 'error' && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <div className="flex items-start">
+                        <span className="text-2xl mr-3">❌</span>
+                        <div>
+                          <h3 className="font-semibold text-red-900 mb-1">Erreur</h3>
+                          <p className="text-sm text-red-700">{errorMessage}</p>
                         </div>
                       </div>
                     </div>
