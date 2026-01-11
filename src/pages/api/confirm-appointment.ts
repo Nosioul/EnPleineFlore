@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
+// Stocker les RDV déjà traités en mémoire (simple et efficace)
+const processedAppointments = new Set<string>();
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,6 +18,65 @@ export default async function handler(
     if (!email || !name || !date || !time) {
       return res.status(400).json({ message: 'Paramètres manquants' });
     }
+
+    // Créer une clé unique pour ce RDV
+    const appointmentKey = `${email}-${date}-${time}`;
+
+    // Vérifier si ce RDV a déjà été traité
+    if (processedAppointments.has(appointmentKey)) {
+      return res.status(200).send(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Déjà traité</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              }
+              .container {
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                text-align: center;
+                max-width: 500px;
+              }
+              .warning-icon {
+                font-size: 64px;
+                margin-bottom: 20px;
+              }
+              h1 {
+                color: #FF9800;
+                margin-bottom: 10px;
+              }
+              p {
+                color: #666;
+                line-height: 1.6;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="warning-icon">⚠️</div>
+              <h1>Déjà traité</h1>
+              <p>Ce rendez-vous a déjà été confirmé. Aucun email supplémentaire n'a été envoyé.</p>
+              <p style="margin-top: 20px; font-size: 14px; color: #999;">Vous pouvez fermer cette fenêtre.</p>
+            </div>
+          </body>
+        </html>
+      `);
+    }
+
+    // Marquer ce RDV comme traité
+    processedAppointments.add(appointmentKey);
 
     // Configurer nodemailer pour Gmail
     const transporter = nodemailer.createTransport({
