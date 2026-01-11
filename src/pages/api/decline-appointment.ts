@@ -2,9 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import path from 'path';
-
-// Stocker les RDV déjà traités en mémoire (simple et efficace)
-const processedAppointments = new Set<string>();
+import { processedAppointments } from '../../utils/appointmentStore';
 
 export default async function handler(
   req: NextApiRequest,
