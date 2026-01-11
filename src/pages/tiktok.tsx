@@ -63,6 +63,23 @@ const TikTokPage: React.FC = () => {
             >
               Découvrir le site complet →
             </Link>
+
+            {/* Vidéo de bienvenue */}
+            <div className="mt-12 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-700 mb-4 font-medium">
+                Bienvenue, on t'explique tout... 👋
+              </p>
+              <div className="bg-gray-100 rounded-2xl p-4 shadow-xl">
+                <video
+                  className="w-full h-auto rounded-xl"
+                  controls
+                  preload="metadata"
+                >
+                  <source src="/videos/bienvenue.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+            </div>
           </div>
         </section>
 
