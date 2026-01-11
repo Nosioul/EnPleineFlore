@@ -2,7 +2,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import path from 'path';
-import { processedAppointments } from '../../utils/appointmentStore';
+
+const SPREADSHEET_ID = '1BOIRo37MAzk-91YRdaPhGEX4TpfeQ4YXROz5FveBNEo';
+const VALIDATION_SHEET = 'validation';
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,95 +21,130 @@ export default async function handler(
       return res.status(400).json({ message: 'Paramètres manquants' });
     }
 
-    // Créer une clé unique pour ce RDV
-    const appointmentKey = `${email}-${date}-${time}`;
-
-    // Vérifier si ce RDV a déjà été traité (confirmé OU refusé)
-    const existingStatus = processedAppointments.get(appointmentKey);
-    if (existingStatus) {
-      const statusText = existingStatus === 'confirmed'
-        ? 'déjà été confirmé'
-        : 'déjà été refusé';
-
-      return res.status(200).send(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Déjà traité</title>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              }
-              .container {
-                background: white;
-                padding: 40px;
-                border-radius: 16px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-                text-align: center;
-                max-width: 500px;
-              }
-              .warning-icon {
-                font-size: 64px;
-                margin-bottom: 20px;
-              }
-              h1 {
-                color: #FF9800;
-                margin-bottom: 10px;
-              }
-              p {
-                color: #666;
-                line-height: 1.6;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="warning-icon">⚠️</div>
-              <h1>Déjà traité</h1>
-              <p>Ce rendez-vous a ${statusText}. Aucun email supplémentaire n'a été envoyé.</p>
-              <p style="margin-top: 20px; font-size: 14px; color: #999;">Vous pouvez fermer cette fenêtre.</p>
-            </div>
-          </body>
-        </html>
-      `);
+    // Charger les credentials Google
+    let auth;
+    if (process.env.GOOGLE_CREDENTIALS) {
+      const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+      auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: [
+          'https://www.googleapis.com/auth/spreadsheets',
+          'https://www.googleapis.com/auth/calendar',
+        ],
+      });
+    } else {
+      const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
+      auth = new google.auth.GoogleAuth({
+        keyFile: credentialsPath,
+        scopes: [
+          'https://www.googleapis.com/auth/spreadsheets',
+          'https://www.googleapis.com/auth/calendar',
+        ],
+      });
     }
 
-    // Marquer ce RDV comme confirmé
-    processedAppointments.set(appointmentKey, 'confirmed');
+    const sheets = google.sheets({ version: 'v4', auth });
+
+    // Vérifier si ce RDV a déjà été traité dans Google Sheets
+    try {
+      const existingData = await sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${VALIDATION_SHEET}!A:D`,
+      });
+
+      const rows = existingData.data.values || [];
+
+      // Chercher si ce RDV existe déjà (Email, Date, Heure)
+      const existingRow = rows.find((row: string[]) =>
+        row[0] === email && row[1] === date && row[2] === time
+      );
+
+      if (existingRow) {
+        const status = existingRow[3]; // Colonne Statut
+        const statusText = status === 'validé'
+          ? 'validé'
+          : 'refusé';
+
+        return res.status(200).send(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Déjà traité</title>
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  min-height: 100vh;
+                  margin: 0;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                }
+                .container {
+                  background: white;
+                  padding: 40px;
+                  border-radius: 16px;
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                  text-align: center;
+                  max-width: 500px;
+                }
+                .warning-icon {
+                  font-size: 64px;
+                  margin-bottom: 20px;
+                }
+                h1 {
+                  color: #FF9800;
+                  margin-bottom: 10px;
+                }
+                p {
+                  color: #666;
+                  line-height: 1.6;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="warning-icon">⚠️</div>
+                <h1>Déjà traité</h1>
+                <p>Demande déjà traitée: ${statusText}</p>
+                <p style="margin-top: 20px; font-size: 14px; color: #999;">Vous pouvez fermer cette fenêtre.</p>
+              </div>
+            </body>
+          </html>
+        `);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la lecture de Google Sheets:', error);
+      // Si l'onglet n'existe pas encore, on continue
+    }
+
+    // Enregistrer ce RDV comme validé dans Google Sheets
+    const newRow = [
+      email as string,
+      date as string,
+      time as string,
+      'validé',
+    ];
+
+    try {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${VALIDATION_SHEET}!A:D`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [newRow],
+        },
+      });
+    } catch (error) {
+      console.error('Erreur lors de l\'écriture dans Google Sheets:', error);
+      // On continue quand même pour envoyer l'email
+    }
 
     // Mettre à jour l'événement dans Google Calendar si eventId est fourni
     if (eventId) {
       try {
-        // Charger les credentials Google
-        let auth;
-        if (process.env.GOOGLE_CREDENTIALS) {
-          const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-          auth = new google.auth.GoogleAuth({
-            credentials,
-            scopes: [
-              'https://www.googleapis.com/auth/spreadsheets',
-              'https://www.googleapis.com/auth/calendar',
-            ],
-          });
-        } else {
-          const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
-          auth = new google.auth.GoogleAuth({
-            keyFile: credentialsPath,
-            scopes: [
-              'https://www.googleapis.com/auth/spreadsheets',
-              'https://www.googleapis.com/auth/calendar',
-            ],
-          });
-        }
-
         const calendar = google.calendar({ version: 'v3', auth });
 
         // Récupérer l'événement actuel pour garder ses détails
