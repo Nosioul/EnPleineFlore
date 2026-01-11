@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "en-pleine-flore.vercel.app"
+        }
+      ],
+      "destination": "https://en-pleine-flore.com/:path*",
+      "permanent": true
+    }
+  ]
+}

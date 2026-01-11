@@ -4,10 +4,14 @@
 User-agent: *
 Allow: /
 
-# Désactiver l'indexation des fichiers inutiles
+# Autoriser les ressources CSS et JavaScript (nécessaires pour le rendu)
+Allow: /_next/static/
+Allow: /_next/*.js
+Allow: /_next/*.css
+
+# Désactiver l'indexation des API et fichiers internes
 Disallow: /api/
-Disallow: /_next/
-Disallow: /node_modules/
+Disallow: /_next/data/
 
 # Fichiers spécifiques
 Allow: /images/
