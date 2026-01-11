@@ -53,7 +53,7 @@ export default async function handler(
 
     // Créer l'événement dans Google Calendar
     const event = {
-      summary: `RDV avec ${name}`,
+      summary: `✖️A confirmer RDV: ${name}`,
       description: `
 Nom: ${name}
 Email: ${email}
@@ -125,7 +125,7 @@ ${message || 'Aucun message'}
 
     // Construire les URLs de confirmation/refus
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const confirmUrl = `${baseUrl}/api/confirm-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}`;
+    const confirmUrl = `${baseUrl}/api/confirm-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}&eventId=${encodeURIComponent(eventId || '')}`;
     const declineUrl = `${baseUrl}/api/decline-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}&eventId=${encodeURIComponent(eventId || '')}`;
 
     // Email de notification pour vous (envoyé à 3 adresses)

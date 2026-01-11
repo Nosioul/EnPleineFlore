@@ -22,8 +22,13 @@ export default async function handler(
     // Créer une clé unique pour ce RDV
     const appointmentKey = `${email}-${date}-${time}`;
 
-    // Vérifier si ce RDV a déjà été traité
-    if (processedAppointments.has(appointmentKey)) {
+    // Vérifier si ce RDV a déjà été traité (confirmé OU refusé)
+    const existingStatus = processedAppointments.get(appointmentKey);
+    if (existingStatus) {
+      const statusText = existingStatus === 'confirmed'
+        ? 'déjà été confirmé'
+        : 'déjà été refusé';
+
       return res.status(200).send(`
         <!DOCTYPE html>
         <html>
@@ -67,7 +72,7 @@ export default async function handler(
             <div class="container">
               <div class="warning-icon">⚠️</div>
               <h1>Déjà traité</h1>
-              <p>Ce rendez-vous a déjà été refusé. Aucun email supplémentaire n'a été envoyé.</p>
+              <p>Ce rendez-vous a ${statusText}. Aucun email supplémentaire n'a été envoyé.</p>
               <p style="margin-top: 20px; font-size: 14px; color: #999;">Vous pouvez fermer cette fenêtre.</p>
             </div>
           </body>
@@ -75,8 +80,8 @@ export default async function handler(
       `);
     }
 
-    // Marquer ce RDV comme traité
-    processedAppointments.add(appointmentKey);
+    // Marquer ce RDV comme refusé
+    processedAppointments.set(appointmentKey, 'declined');
 
     // Supprimer l'événement du Google Calendar si eventId est fourni
     if (eventId) {

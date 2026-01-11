@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
+import path from 'path';
 import { processedAppointments } from '../../utils/appointmentStore';
 
 export default async function handler(
@@ -11,7 +13,7 @@ export default async function handler(
   }
 
   try {
-    const { email, name, date, time } = req.query;
+    const { email, name, date, time, eventId } = req.query;
 
     if (!email || !name || !date || !time) {
       return res.status(400).json({ message: 'Paramètres manquants' });
@@ -20,8 +22,13 @@ export default async function handler(
     // Créer une clé unique pour ce RDV
     const appointmentKey = `${email}-${date}-${time}`;
 
-    // Vérifier si ce RDV a déjà été traité
-    if (processedAppointments.has(appointmentKey)) {
+    // Vérifier si ce RDV a déjà été traité (confirmé OU refusé)
+    const existingStatus = processedAppointments.get(appointmentKey);
+    if (existingStatus) {
+      const statusText = existingStatus === 'confirmed'
+        ? 'déjà été confirmé'
+        : 'déjà été refusé';
+
       return res.status(200).send(`
         <!DOCTYPE html>
         <html>
@@ -65,7 +72,7 @@ export default async function handler(
             <div class="container">
               <div class="warning-icon">⚠️</div>
               <h1>Déjà traité</h1>
-              <p>Ce rendez-vous a déjà été confirmé. Aucun email supplémentaire n'a été envoyé.</p>
+              <p>Ce rendez-vous a ${statusText}. Aucun email supplémentaire n'a été envoyé.</p>
               <p style="margin-top: 20px; font-size: 14px; color: #999;">Vous pouvez fermer cette fenêtre.</p>
             </div>
           </body>
@@ -73,8 +80,56 @@ export default async function handler(
       `);
     }
 
-    // Marquer ce RDV comme traité
-    processedAppointments.add(appointmentKey);
+    // Marquer ce RDV comme confirmé
+    processedAppointments.set(appointmentKey, 'confirmed');
+
+    // Mettre à jour l'événement dans Google Calendar si eventId est fourni
+    if (eventId) {
+      try {
+        // Charger les credentials Google
+        let auth;
+        if (process.env.GOOGLE_CREDENTIALS) {
+          const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+          auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: [
+              'https://www.googleapis.com/auth/spreadsheets',
+              'https://www.googleapis.com/auth/calendar',
+            ],
+          });
+        } else {
+          const credentialsPath = path.join(process.cwd(), 'google-credentials.json');
+          auth = new google.auth.GoogleAuth({
+            keyFile: credentialsPath,
+            scopes: [
+              'https://www.googleapis.com/auth/spreadsheets',
+              'https://www.googleapis.com/auth/calendar',
+            ],
+          });
+        }
+
+        const calendar = google.calendar({ version: 'v3', auth });
+
+        // Récupérer l'événement actuel pour garder ses détails
+        const existingEvent = await calendar.events.get({
+          calendarId: '85c754fb0c43f672ffe00dbfd1e1f1c6dc3e1e25cf34dcc1b81c80ed2f642495@group.calendar.google.com',
+          eventId: eventId as string,
+        });
+
+        // Mettre à jour seulement le titre de l'événement
+        await calendar.events.update({
+          calendarId: '85c754fb0c43f672ffe00dbfd1e1f1c6dc3e1e25cf34dcc1b81c80ed2f642495@group.calendar.google.com',
+          eventId: eventId as string,
+          requestBody: {
+            ...existingEvent.data,
+            summary: `☑️RDV validé`,
+          },
+        });
+      } catch (error) {
+        console.error('Erreur lors de la mise à jour de l\'événement:', error);
+        // On continue quand même pour envoyer l'email
+      }
+    }
 
     // Configurer nodemailer pour Gmail
     const transporter = nodemailer.createTransport({
