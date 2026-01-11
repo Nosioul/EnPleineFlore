@@ -181,3 +181,5 @@ Si vous avez des questions ou des problèmes, vérifiez :
 - Ne commitez JAMAIS le fichier `.env.local` dans Git
 - Ne partagez JAMAIS votre `GMAIL_APP_PASSWORD`
 - Le fichier `.env.local` est déjà dans `.gitignore`
+
+voila
