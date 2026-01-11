@@ -186,7 +186,7 @@ export default async function handler(
       `;
 
     await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      from: 'En Pleine Flore <contact@en-pleine-flore.com>',
       to: email as string,
       subject: 'Votre rendez-vous est confirmé - En Pleine Flore',
       html: confirmationMailHTML,

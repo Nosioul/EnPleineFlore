@@ -161,14 +161,14 @@ ${message || 'Aucun message'}
 
     // Envoyer les emails avec Resend
     await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      from: 'En Pleine Flore <contact@en-pleine-flore.com>',
       to: email,
       subject: 'Demande de rendez-vous reçue - En Pleine Flore',
       html: clientMailHTML,
     });
 
     await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      from: 'En Pleine Flore <contact@en-pleine-flore.com>',
       to: ['louison.charm@gmail.com', 'mijocharme@gmail.com', 'en.pleine.flore@gmail.com'],
       subject: `Nouveau RDV : ${name} - ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`,
       html: adminMailHTML,
