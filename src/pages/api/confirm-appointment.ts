@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { google } from 'googleapis';
 import path from 'path';
 
+const resend = new Resend(process.env.RESEND_API_KEY);
 const SPREADSHEET_ID = '1BOIRo37MAzk-91YRdaPhGEX4TpfeQ4YXROz5FveBNEo';
 const VALIDATION_SHEET = 'validation';
 
@@ -168,21 +169,8 @@ export default async function handler(
       }
     }
 
-    // Configurer nodemailer pour Gmail
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    });
-
     // Email de confirmation au client
-    const confirmationMailOptions = {
-      from: process.env.GMAIL_USER,
-      to: email as string,
-      subject: 'Votre rendez-vous est confirmé - En Pleine Flore',
-      html: `
+    const confirmationMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #4CAF50;">Rendez-vous confirmé ✓</h2>
           <p>Bonjour ${name},</p>
@@ -195,10 +183,14 @@ export default async function handler(
           <p>À très bientôt,</p>
           <p style="color: #666; font-size: 12px; margin-top: 30px;">L'équipe En Pleine Flore</p>
         </div>
-      `,
-    };
+      `;
 
-    await transporter.sendMail(confirmationMailOptions);
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      to: email as string,
+      subject: 'Votre rendez-vous est confirmé - En Pleine Flore',
+      html: confirmationMailHTML,
+    });
 
     // Retourner une page HTML de succès
     res.status(200).send(`

@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { google } from 'googleapis';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import path from 'path';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(
   req: NextApiRequest,
@@ -87,21 +89,8 @@ ${message || 'Aucun message'}
 
     const eventId = calendarResponse.data.id;
 
-    // Configurer nodemailer pour Gmail
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD, // Mot de passe d'application Google
-      },
-    });
-
     // Email de confirmation au client
-    const clientMailOptions = {
-      from: process.env.GMAIL_USER,
-      to: email,
-      subject: 'Demande de rendez-vous reçue - En Pleine Flore',
-      html: `
+    const clientMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #FF9800;">📅 Demande de rendez-vous reçue</h2>
           <p>Bonjour ${name},</p>
@@ -120,8 +109,7 @@ ${message || 'Aucun message'}
           <p>Merci pour votre confiance !</p>
           <p style="color: #666; font-size: 12px; margin-top: 30px;">L'équipe En Pleine Flore</p>
         </div>
-      `,
-    };
+      `;
 
     // Construire les URLs de confirmation/refus
     // Déterminer l'URL de base (Vercel ou localhost)
@@ -141,11 +129,7 @@ ${message || 'Aucun message'}
     const declineUrl = `${baseUrl}/api/decline-appointment?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&date=${encodeURIComponent(new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }))}&time=${encodeURIComponent(time)}&eventId=${encodeURIComponent(eventId || '')}`;
 
     // Email de notification pour vous (envoyé à 3 adresses)
-    const adminMailOptions = {
-      from: process.env.GMAIL_USER,
-      to: ['louison.charm@gmail.com', 'mijocharme@gmail.com', 'en.pleine.flore@gmail.com'],
-      subject: `Nouveau RDV : ${name} - ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`,
-      html: `
+    const adminMailHTML = `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #2196F3;">Nouveau rendez-vous reçu</h2>
 
@@ -173,12 +157,22 @@ ${message || 'Aucun message'}
             ℹ️ L'événement a été ajouté à votre Google Calendar "RDV En-pleine-flore"
           </p>
         </div>
-      `,
-    };
+      `;
 
-    // Envoyer les emails
-    await transporter.sendMail(clientMailOptions);
-    await transporter.sendMail(adminMailOptions);
+    // Envoyer les emails avec Resend
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      to: email,
+      subject: 'Demande de rendez-vous reçue - En Pleine Flore',
+      html: clientMailHTML,
+    });
+
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'contact@en-pleine-flore.com',
+      to: ['louison.charm@gmail.com', 'mijocharme@gmail.com', 'en.pleine.flore@gmail.com'],
+      subject: `Nouveau RDV : ${name} - ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`,
+      html: adminMailHTML,
+    });
 
     res.status(200).json({
       success: true,
