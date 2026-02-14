@@ -16,9 +16,6 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
-              Accueil
-            </Link>
             <Link href="/produit-unimate" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
               Unimate
             </Link>
@@ -76,9 +73,6 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <div className="flex flex-col space-y-3">
-              <Link href="/" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
-                Accueil
-              </Link>
               <Link href="/produit-unimate" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Unimate
               </Link>

@@ -18,31 +18,58 @@ const HomePage: React.FC = () => {
       <Header />
       
       <main>
-        {/* Animation vent à l'arrivée */}
-        <div className="wind-container pointer-events-none fixed inset-0 z-50 overflow-hidden" aria-hidden="true">
-          <div className="wind-line" style={{ top: '12%', width: '45%', left: '-50%', animationDelay: '0s' }}></div>
-          <div className="wind-line" style={{ top: '28%', width: '60%', left: '-60%', animationDelay: '0.15s', height: '3px' }}></div>
-          <div className="wind-line" style={{ top: '42%', width: '35%', left: '-40%', animationDelay: '0.3s' }}></div>
-          <div className="wind-line" style={{ top: '55%', width: '55%', left: '-55%', animationDelay: '0.1s', height: '2.5px' }}></div>
-          <div className="wind-line" style={{ top: '68%', width: '40%', left: '-45%', animationDelay: '0.25s' }}></div>
-          <div className="wind-line" style={{ top: '80%', width: '50%', left: '-50%', animationDelay: '0.05s', height: '1.5px' }}></div>
-          <div className="wind-line" style={{ top: '35%', width: '30%', left: '-35%', animationDelay: '0.4s' }}></div>
-        </div>
-
         {/* Hero Section */}
-        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
-          <div className="container-custom py-12 md:py-16 lg:py-20">
+        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50 overflow-hidden">
+          {/* Animated organic ribbons */}
+          <div className="absolute inset-0 pointer-events-none">
+            <svg className="absolute w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="heroRibbon1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor:'rgba(251,146,60,0.4)'}}/>
+                  <stop offset="100%" style={{stopColor:'rgba(253,186,116,0.3)'}}/>
+                </linearGradient>
+                <linearGradient id="heroRibbon2" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{stopColor:'rgba(234,88,12,0.3)'}}/>
+                  <stop offset="100%" style={{stopColor:'rgba(251,191,36,0.25)'}}/>
+                </linearGradient>
+                <linearGradient id="heroRibbon3" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{stopColor:'rgba(74,222,128,0.25)'}}/>
+                  <stop offset="100%" style={{stopColor:'rgba(253,186,116,0.3)'}}/>
+                </linearGradient>
+              </defs>
+              <path className="ribbon-anim" d="M-50,350 C150,100 400,50 600,200 C800,350 900,100 1250,250"
+                    stroke="url(#heroRibbon1)" strokeWidth="2.5" fill="none" strokeLinecap="round"
+                    strokeDasharray="2000" style={{animationDelay:'0.2s'}} />
+              <path className="ribbon-anim" d="M-30,150 C200,400 350,50 550,300 C750,550 950,200 1250,450"
+                    stroke="url(#heroRibbon2)" strokeWidth="2" fill="none" strokeLinecap="round"
+                    strokeDasharray="2000" style={{animationDelay:'0.5s'}} />
+              <path className="ribbon-anim" d="M-50,600 C100,300 300,500 500,250 C700,0 900,400 1250,150"
+                    stroke="url(#heroRibbon3)" strokeWidth="3" fill="none" strokeLinecap="round"
+                    strokeDasharray="2000" style={{animationDelay:'0.8s'}} />
+              <path className="ribbon-anim" d="M-50,100 C200,350 450,0 650,300 C850,600 1000,100 1250,350"
+                    stroke="url(#heroRibbon1)" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                    strokeDasharray="2000" style={{animationDelay:'1.1s'}} />
+              <path className="ribbon-anim" d="M-30,500 C150,200 350,650 600,400 C850,150 1050,550 1260,300"
+                    stroke="url(#heroRibbon2)" strokeWidth="2" fill="none" strokeLinecap="round"
+                    strokeDasharray="2000" style={{animationDelay:'0.3s'}} />
+            </svg>
+          </div>
+          <div className="container-custom py-8 md:py-12 lg:py-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+                {/* Phrase manuscrite juste au-dessus du titre */}
+                <p className="hero-text-reveal text-flore-orange-500 text-xl sm:text-2xl md:text-3xl mb-1" style={{ fontFamily: "'Caveat', cursive" }}>
+                  Découvrez notre présentation ! <span className="inline-block lg:hidden">👇</span>
+                </p>
+                <h1 className="hero-text-reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
                   Prenez soin de vous,{' '}
                   <span className="text-gradient">prenez soin de votre microbiote</span>
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
+                <p className="hero-text-reveal text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
                   Découvrez le programme Feel Great et transformez votre quotidien grâce à Unimate et Balance.
                   Une approche scientifique pour optimiser votre bien-être.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="hero-text-reveal flex flex-col sm:flex-row gap-4">
                   <a
                     href="https://shop2.unicity.com/fra/fr/product/feel-great?focus=true&sku=36648"
                     target="_blank"
@@ -57,11 +84,7 @@ const HomePage: React.FC = () => {
                   </Link>
                 </div>
               </div>
-              <div className="relative flex flex-col items-center">
-                <p className="text-flore-orange-500 font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                  Découvrez notre présentation
-                  <span className="inline-block bounce-arrow text-2xl">&#8594;</span>
-                </p>
+              <div className="relative flex flex-col items-center hero-text-reveal">
                 <div className="bg-white rounded-2xl shadow-2xl p-2 md:p-3 max-w-sm md:max-w-xs lg:max-w-sm">
                   <video
                     className="w-full h-auto rounded-xl"
@@ -77,171 +100,128 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </section>
-<section className="relative py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gradient-to-br from-slate-50 via-white to-orange-50 overflow-hidden">
-  {/* Animations de fond subtiles */}
-  <div className="absolute inset-0 opacity-5">
-    <div className="absolute top-20 left-10 w-72 h-72 bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
-    <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-  </div>
+        {/* Section Insulinorésistance */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="container-custom">
+            {/* Titre */}
+            <div className="text-center mb-14 md:mb-20">
+              <p className="text-flore-orange-500 font-semibold text-sm uppercase tracking-widest mb-3">Comprendre le problème</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+                L'insulinorésistance : <span className="text-gradient">le problème caché</span>
+              </h2>
+              <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+                Un phénomène métabolique silencieux qui touche des millions de personnes.
+              </p>
+            </div>
 
-  <div className="max-w-7xl mx-auto relative z-10">
-    {/* En-tête de la section */}
-    <div className="text-center mb-10 md:mb-16 animate-fade-in">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 md:mb-6 leading-tight">
-        L'insulinorésistance : <br className="hidden sm:block" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
-          le problème caché
-        </span>
-      </h2>
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-        Comprendre ce phénomène métabolique silencieux qui affecte des millions de personnes,
-        et découvrir comment y remédier naturellement.
-      </p>
-    </div>
+            {/* Layout : Problème → Conséquences → Solution */}
+            <div className="space-y-12 md:space-y-0 md:grid md:grid-cols-12 md:gap-8 lg:gap-12 mb-16">
 
-    {/* Grid des 3 cartes principales */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
-      {/* Carte 1 : Qu'est-ce que l'insulinorésistance ? */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-orange-200 md:hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-4 md:p-6 text-center">
-          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">❗</div>
-          <h3 className="text-xl md:text-2xl font-bold text-white">Qu'est-ce que c'est ?</h3>
-        </div>
-        <div className="p-6 md:p-8">
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-            <span className="font-semibold text-gray-900">L'insulinorésistance</span> se produit lorsque vos cellules (muscles, foie, tissu adipeux) deviennent moins sensibles à l'action de l'insuline.
-          </p>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-            Normalement, l'insuline permet au glucose de pénétrer dans les cellules pour produire de l'énergie. Mais lorsque les cellules résistent, le sucre reste dans le sang.
-          </p>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-            Pour compenser, votre pancréas sécrète <span className="font-semibold text-orange-600">toujours plus d'insuline</span>, créant un cercle vicieux qui peut mener au diabète de type 2.
-          </p>
-        </div>
-      </div>
+              {/* Colonne gauche : Le problème */}
+              <div className="md:col-span-5">
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-flore-orange-500 flex items-center justify-center">
+                      <span className="text-white text-lg font-bold">?</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Qu'est-ce que c'est ?</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    L'insulinorésistance se produit lorsque vos cellules deviennent moins sensibles à l'action de l'insuline. Le glucose reste dans le sang au lieu d'alimenter vos cellules.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Votre pancréas sécrète alors <span className="font-semibold text-flore-orange-600">toujours plus d'insuline</span>, créant un cercle vicieux pouvant mener au diabète de type 2.
+                  </p>
+                </div>
+              </div>
 
-      {/* Carte 2 : Les conséquences */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-red-200 md:hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-red-500 to-red-600 p-4 md:p-6 text-center">
-          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">⚠️</div>
-          <h3 className="text-xl md:text-2xl font-bold text-white">Les conséquences</h3>
-        </div>
-        <div className="p-6 md:p-8">
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
-            Si elle n'est pas prise en charge, l'insulinorésistance entraîne des complications sérieuses :
-          </p>
-          <ul className="space-y-2 md:space-y-3 text-gray-700 text-xs md:text-base">
-            <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
-              <span><span className="font-semibold">Diabète de type 2</span> : épuisement du pancréas et glycémie chroniquement élevée</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
-              <span><span className="font-semibold">Syndrome métabolique</span> : obésité abdominale, hypertension, dyslipidémie</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
-              <span><span className="font-semibold">Risques cardiovasculaires</span> augmentés de 37%</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
-              <span><span className="font-semibold">Inflammation chronique</span> et stress oxydatif</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-bold mr-1.5 md:mr-2 text-base md:text-xl flex-shrink-0">•</span>
-              <span><span className="font-semibold">Fatigue persistante</span> et troubles métaboliques</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+              {/* Colonne droite : Conséquences + Solution */}
+              <div className="md:col-span-7 space-y-8">
+                {/* Conséquences */}
+                <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-2xl p-8">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-red-500 flex items-center justify-center">
+                      <span className="text-white text-lg">⚠</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Les conséquences</h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      { title: 'Diabète de type 2', desc: 'Épuisement du pancréas' },
+                      { title: 'Syndrome métabolique', desc: 'Obésité, hypertension' },
+                      { title: 'Risques cardiovasculaires', desc: 'Augmentés de 37%' },
+                      { title: 'Fatigue persistante', desc: 'Inflammation chronique' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3 bg-white/70 rounded-xl p-3">
+                        <span className="text-red-400 mt-0.5 flex-shrink-0">●</span>
+                        <div>
+                          <p className="font-semibold text-gray-800 text-sm">{item.title}</p>
+                          <p className="text-gray-500 text-xs">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-      {/* Carte 3 : Comment Feel Great aide */}
-      <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 md:hover:-translate-y-2">
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 md:p-6 text-center">
-          <div className="text-4xl md:text-6xl mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300">✅</div>
-          <h3 className="text-xl md:text-2xl font-bold text-white">La solution Feel Great</h3>
-        </div>
-        <div className="p-6 md:p-8">
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
-            Le programme Feel Great combine deux produits scientifiquement validés pour agir en synergie :
-          </p>
-          
-          <div className="mb-5 md:mb-6">
-            <h4 className="font-bold text-base md:text-lg text-orange-600 mb-2 md:mb-3 flex items-center">
-              <span className="bg-orange-100 rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center mr-2 text-xs md:text-sm flex-shrink-0">1</span>
-              <span className="leading-tight">Balance (Matrice de fibres)</span>
-            </h4>
-            <ul className="space-y-1.5 md:space-y-2 text-gray-700 text-xs md:text-sm">
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Réduit la glycémie de <span className="font-semibold">20-28%</span> après les repas</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Diminue l'insuline sanguine de <span className="font-semibold">13-27%</span></span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Ralentit l'absorption des glucides grâce au gel de fibres</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Améliore la sensibilité à l'insuline naturellement</span>
-              </li>
-            </ul>
+                {/* La solution */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center">
+                      <span className="text-white text-lg">✓</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">La solution Feel Great</h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Balance */}
+                    <div>
+                      <h4 className="font-bold text-flore-orange-600 mb-3 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-flore-orange-100 flex items-center justify-center text-xs font-bold text-flore-orange-600">1</span>
+                        Balance
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Glycémie réduite de <b>20-28%</b></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Insuline réduite de <b>13-27%</b></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Absorption des glucides ralentie</li>
+                      </ul>
+                    </div>
+                    {/* Unimate */}
+                    <div>
+                      <h4 className="font-bold text-green-600 mb-3 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-xs font-bold text-green-600">2</span>
+                        Unimate
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Stimule le <b>métabolisme</b></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Améliore la <b>signalisation insuline</b></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span>Combustion des graisses</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Validation scientifique */}
+            <div className="bg-gray-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start gap-6">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                <span className="text-3xl">🔬</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">Validation scientifique</h4>
+                <p className="text-gray-600 leading-relaxed mb-2">
+                  Plus de <span className="font-semibold">35 ans de recherche</span> clinique par Cleveland Clinic, UCLA, Mayo Clinic, Stanford School of Medicine et l'Université de Sydney.
+                </p>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Amélioration significative du contrôle glycémique, réduction de l'hyperinsulinémie et des lipides plasmatiques. Balance est référencé dans le Prescribers Desk Reference depuis 2002.
+                </p>
+              </div>
+            </div>
+
+            {/* Phrase finale */}
+            <p className="text-center text-gray-400 text-base mt-10 italic">
+              Une approche naturelle, scientifiquement prouvée, pour retrouver l'équilibre métabolique.
+            </p>
           </div>
-
-          <div>
-            <h4 className="font-bold text-base md:text-lg text-green-600 mb-2 md:mb-3 flex items-center">
-              <span className="bg-green-100 rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center mr-2 text-xs md:text-sm flex-shrink-0">2</span>
-              <span className="leading-tight">Unimate (Yerba Maté concentré)</span>
-            </h4>
-            <ul className="space-y-1.5 md:space-y-2 text-gray-700 text-xs md:text-sm">
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Stimule le <span className="font-semibold">métabolisme cellulaire</span> et la production d'énergie</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Améliore la <span className="font-semibold">signalisation de l'insuline</span></span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Favorise la combustion des graisses (thermogenèse)</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-500 mr-1.5 md:mr-2 flex-shrink-0">→</span>
-                <span>Riche en antioxydants protecteurs</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Encadré scientifique avec validation clinique */}
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl md:rounded-2xl p-4 md:p-8 border-l-4 border-indigo-500 shadow-md hover:shadow-xl transition-shadow duration-300">
-      <div className="flex items-start">
-        <div className="text-3xl md:text-5xl mr-3 md:mr-6 flex-shrink-0">🔬</div>
-        <div>
-          <h4 className="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-4">Validation scientifique</h4>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-            Le système Feel Great a fait l'objet de <span className="font-semibold">plus de 35 ans de recherche</span> clinique par des institutions de premier plan : Cleveland Clinic, UCLA, Mayo Clinic, Stanford School of Medicine et l'Université de Sydney.
-          </p>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-            Les études démontrent une <span className="font-semibold text-indigo-600">amélioration significative</span> du contrôle glycémique, une réduction de l'hyperinsulinémie, et une diminution des lipides plasmatiques chez les patients atteints de syndrome métabolique. Balance est répertorié dans le <span className="italic">Prescribers Desk Reference</span> depuis 2002.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Call-to-action subtil */}
-    <div className="text-center mt-12">
-      <p className="text-gray-600 text-lg italic">
-        Une approche naturelle, scientifiquement prouvée, pour retrouver l'équilibre métabolique
-      </p>
-    </div>
-  </div>
 
   <style jsx>{`
     @keyframes fade-in {
