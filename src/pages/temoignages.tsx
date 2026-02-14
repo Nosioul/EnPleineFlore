@@ -88,6 +88,41 @@ const Temoignages: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Témoignage Clotilde */}
+            <div className="mt-12 max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                <div className="p-6 md:p-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
+                    La transformation de Clotilde
+                  </h3>
+                  <p className="text-flore-orange-500 font-semibold text-center mb-6 text-lg">
+                    -10 kg et ce n&apos;est que le début !
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 md:gap-6">
+                    <div className="rounded-xl overflow-hidden shadow-md">
+                      <img
+                        src="/images/clo-1.jpeg"
+                        alt="Clotilde - Avant"
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="rounded-xl overflow-hidden shadow-md">
+                      <img
+                        src="/images/clo-2.jpeg"
+                        alt="Clotilde - Après"
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mt-6 text-center text-lg">
+                    Grâce au programme Feel Great, Clotilde a perdu 10 kg et continue sa transformation. Une belle preuve que les résultats sont au rendez-vous !
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

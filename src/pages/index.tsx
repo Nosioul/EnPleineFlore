@@ -18,6 +18,56 @@ const HomePage: React.FC = () => {
       <Header />
       
       <main>
+        {/* Animation vent à l'arrivée */}
+        <div className="wind-lines pointer-events-none fixed inset-0 z-50" aria-hidden="true">
+          <div className="wind-line wind-line-1"></div>
+          <div className="wind-line wind-line-2"></div>
+          <div className="wind-line wind-line-3"></div>
+          <div className="wind-line wind-line-4"></div>
+          <div className="wind-line wind-line-5"></div>
+          <div className="wind-line wind-line-6"></div>
+          <div className="wind-line wind-line-7"></div>
+        </div>
+
+        <style jsx>{`
+          .wind-lines {
+            overflow: hidden;
+            animation: wind-container-fade 2.5s ease-out forwards;
+          }
+          @keyframes wind-container-fade {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+          }
+          .wind-line {
+            position: absolute;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, transparent, rgba(249,115,22,0.5), rgba(249,115,22,0.2), transparent);
+            animation: wind-sweep 1.8s ease-out forwards;
+          }
+          .wind-line-1 { top: 12%; width: 45%; left: -50%; animation-delay: 0s; }
+          .wind-line-2 { top: 28%; width: 60%; left: -60%; animation-delay: 0.15s; height: 3px; }
+          .wind-line-3 { top: 42%; width: 35%; left: -40%; animation-delay: 0.3s; }
+          .wind-line-4 { top: 55%; width: 55%; left: -55%; animation-delay: 0.1s; height: 2.5px; }
+          .wind-line-5 { top: 68%; width: 40%; left: -45%; animation-delay: 0.25s; }
+          .wind-line-6 { top: 80%; width: 50%; left: -50%; animation-delay: 0.05s; height: 1.5px; }
+          .wind-line-7 { top: 35%; width: 30%; left: -35%; animation-delay: 0.4s; }
+          @keyframes wind-sweep {
+            0% { transform: translateX(0); opacity: 0; }
+            15% { opacity: 0.8; }
+            60% { opacity: 0.6; }
+            100% { transform: translateX(calc(100vw + 100%)); opacity: 0; }
+          }
+          @keyframes bounce-arrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+          }
+          .animate-bounce-arrow {
+            animation: bounce-arrow 1.2s ease-in-out infinite;
+          }
+        `}</style>
+
         {/* Hero Section */}
         <section className="relative min-h-[500px] md:min-h-[600px] flex items-center bg-gradient-to-br from-flore-orange-50 via-white to-flore-green-50">
           <div className="container-custom py-12 md:py-16 lg:py-20">
@@ -46,7 +96,11 @@ const HomePage: React.FC = () => {
                   </Link>
                 </div>
               </div>
-              <div className="relative flex justify-center">
+              <div className="relative flex flex-col items-center">
+                <p className="text-flore-orange-500 font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
+                  Découvrez notre présentation
+                  <span className="inline-block animate-bounce-arrow text-2xl">&#8594;</span>
+                </p>
                 <div className="bg-white rounded-2xl shadow-2xl p-2 md:p-3 max-w-sm md:max-w-xs lg:max-w-sm">
                   <video
                     className="w-full h-auto rounded-xl"
