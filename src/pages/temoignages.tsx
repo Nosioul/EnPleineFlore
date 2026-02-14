@@ -29,33 +29,6 @@ const Temoignages: React.FC = () => {
           </div>
         </section>
 
-        {/* Présentation vidéo */}
-        <section className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Comprendre Feel Great en quelques minutes
-              </h2>
-              <p className="text-gray-600 text-lg">
-                Une courte présentation pour tout comprendre sur le programme et ses bienfaits.
-              </p>
-            </div>
-            <div className="max-w-4xl mx-auto">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
-                <video
-                  className="w-full"
-                  controls
-                  preload="metadata"
-                  poster=""
-                >
-                  <source src="/videos/presentation.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Témoignages vidéo */}
         <section className="section-padding bg-gradient-to-br from-flore-orange-50 to-white">
           <div className="container-custom">

@@ -47,13 +47,16 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-4 md:p-8">
-                  <img
-                    src="/images/start.png"
-                    alt="Programme Feel Great"
+                <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-3 md:p-5">
+                  <video
                     className="w-full h-auto rounded-xl md:rounded-2xl"
-                    loading="lazy"
-                  />
+                    controls
+                    preload="metadata"
+                    playsInline
+                  >
+                    <source src="/videos/presentation.mp4" type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                  </video>
                 </div>
               </div>
             </div>
