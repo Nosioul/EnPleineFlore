@@ -34,6 +34,10 @@ const Header: React.FC = () => {
               Débuter
             </Link>
 
+            <Link href="/temoignages" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
+              Témoignages
+            </Link>
+
             <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium transition-colors">
               Pourquoi nous?
             </Link>
@@ -90,6 +94,9 @@ const Header: React.FC = () => {
                 Débuter
               </Link>
 
+              <Link href="/temoignages" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
+                Témoignages
+              </Link>
               <Link href="/pourquoi" className="text-gray-700 hover:text-flore-orange-500 font-medium py-2">
                 Pourquoi nous?
               </Link>
