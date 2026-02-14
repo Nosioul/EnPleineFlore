@@ -46,10 +46,10 @@ const HomePage: React.FC = () => {
                   </Link>
                 </div>
               </div>
-              <div className="relative">
-                <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-3 md:p-5">
+              <div className="relative flex justify-center">
+                <div className="bg-white rounded-2xl shadow-2xl p-2 md:p-3 max-w-sm md:max-w-xs lg:max-w-sm">
                   <video
-                    className="w-full h-auto rounded-xl md:rounded-2xl"
+                    className="w-full h-auto rounded-xl"
                     controls
                     preload="metadata"
                     playsInline
