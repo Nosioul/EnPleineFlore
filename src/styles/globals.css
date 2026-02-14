@@ -51,3 +51,39 @@
   filter: blur(60px);
   animation: breathing-glow 18s ease-in-out infinite alternate;
 }
+
+/* Animation vent à l'arrivée */
+.wind-container {
+  animation: wind-container-fade 2.5s ease-out forwards;
+}
+
+@keyframes wind-container-fade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.wind-line {
+  position: absolute;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.5), rgba(249, 115, 22, 0.2), transparent);
+  animation: wind-sweep 1.8s ease-out forwards;
+}
+
+@keyframes wind-sweep {
+  0% { transform: translateX(0); opacity: 0; }
+  15% { opacity: 0.8; }
+  60% { opacity: 0.6; }
+  100% { transform: translateX(200vw); opacity: 0; }
+}
+
+/* Flèche animée */
+.bounce-arrow {
+  animation: bounce-arrow 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
